@@ -17,7 +17,7 @@ class Service extends BaseModel
     use SluggableScopeHelpers;
 
     protected $table = 'services';
-    protected $fillable = ['name', 'description', 'content', 'status'];
+    protected $fillable = ['name', 'description', 'content', 'status', 'cate_id'];
 
     public function sluggable(): array
     {

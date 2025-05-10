@@ -380,7 +380,8 @@
 --------------------------------------------------------------*/
 body {
   font-family: var(--firdip-font, "Roboto", sans-serif);
-  color: var(--firdip-text, #7D8081);
+  /*color: var(--firdip-text, #7D8081);*/
+  color: #333;
   font-size: 16px;
   line-height: 2.125;
   font-weight: 500;
@@ -5073,7 +5074,7 @@ body.megamenu-popup-active .mobile-nav__content {
   position: absolute;
   left: -50px;
   bottom: 0;
-  background: var(--firdip-white, #fff);
+  /*background: var(--firdip-white, #fff);*/
 }
 @media (max-width: 575px) {
   .testimonials-one__top::after {
@@ -10254,7 +10255,7 @@ body.megamenu-popup-active .mobile-nav__content {
   font-family: var(--firdip-heading-font, "Roboto", sans-serif);
   font-style: normal;
   font-weight: 700;
-  font-size: 50px;
+  font-size: 40px;
   line-height: 94%;
 }
 @media (max-width: 767px) {
@@ -10619,7 +10620,7 @@ body.megamenu-popup-active .mobile-nav__content {
   left: 0;
   right: 0;
   bottom: 0;
-  background-size: cover;
+  /*background-size: cover;*/
   background-repeat: no-repeat;
   background-position: center;
   background-position: center center;

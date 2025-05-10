@@ -19,8 +19,9 @@ class PostCategory extends BaseModel
     use SluggableScopeHelpers;
 
     public const TYPE_POST = 1;
-    public const TYPE_ABOUT= 2;
-    public const TYPE_BLOG= 3;
+    public const TYPE_PROJECT = 2;
+    public const TYPE_SERVICE = 3;
+    public const TYPE_KIENTHUC = 4;
     public function sluggable(): array
     {
         return [
@@ -58,6 +59,11 @@ class PostCategory extends BaseModel
         return self::with(['image'])->where('parent_id', $this->id)->orderBy('sort_order','asc')->get();
     }
 
+    public function childs()
+    {
+        return $this->hasMany(self::class, 'parent_id')->where('level', 1);
+    }
+
     public function getParent()
     {
         return self::with(['image'])->where('id', $this->parent_id)->first() ? self::where('id', $this->parent_id)->first() : null;
@@ -68,6 +74,11 @@ class PostCategory extends BaseModel
         return self::where('id', $this->parent_id)->first() ? self::where('id', $this->parent_id)->first()->slug : null;
     }
 
+    public function parent()
+    {
+        return $this->belongsTo(PostCategory::class, 'parent_id');
+    }
+
     public function image()
     {
         return $this->morphOne(File::class, 'model');
@@ -76,6 +87,16 @@ class PostCategory extends BaseModel
     public function posts()
     {
         return $this->hasMany('App\Model\Admin\Post','cate_id','id')->orderBy('created_at','desc');
+    }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class,'cate_id','id')->orderBy('created_at','desc');
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class,'cate_id','id')->orderBy('created_at','desc');
     }
 
     public function blogs()
@@ -96,6 +117,16 @@ class PostCategory extends BaseModel
     public function canDelete ()
     {
         return Auth::user()->id == $this->created_by && $this->posts->count() == 0;
+    }
+
+    public function canDeleteProject ()
+    {
+        return Auth::user()->id == $this->created_by && $this->projects()->count() == 0;
+    }
+
+    public function canDeleteService ()
+    {
+        return Auth::user()->id == $this->created_by && $this->services()->count() == 0;
     }
 
     public static function getForSelect($type = 1) {

@@ -17,7 +17,7 @@ class Project extends BaseModel
     use SluggableScopeHelpers;
 
     protected $table = 'projects';
-    protected $fillable = ['name', 'description', 'content', 'status'];
+    protected $fillable = ['name', 'description', 'content', 'status', 'area', 'location', 'service', 'completion_time', 'is_highlight'];
 
     public function sluggable(): array
     {
@@ -46,7 +46,12 @@ class Project extends BaseModel
 
     public function image()
     {
-        return $this->morphOne(File::class, 'model')->where('custom_field', 'image');
+        return $this->morphOne(File::class, 'model')->where('custom_field', 'image')->orderBy('id', 'desc');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(PostCategory::class, 'cate_id');
     }
 
     public function canEdit()
@@ -71,11 +76,17 @@ class Project extends BaseModel
         return $result;
     }
 
+    public function galleries()
+    {
+        return $this->hasMany(ProjectGallery::class, 'project_id', 'id');
+    }
+
     public static function getDataForEdit($id)
     {
         return self::where('id', $id)
             ->with([
                 'image',
+                'galleries.image'
             ])
             ->firstOrFail();
     }
@@ -88,10 +99,10 @@ class Project extends BaseModel
                 if (isset($g['id'])) array_push($exist_ids, $g['id']);
             }
 
-            $deleted = ServiceGallery::where('service_id', $this->id)->whereNotIn('id', $exist_ids)->get();
+            $deleted = ProjectGallery::where('project_id', $this->id)->whereNotIn('id', $exist_ids)->get();
             foreach ($deleted as $item) {
                 if ($item->image) {
-                    FileHelper::deleteFileFromCloudflare($item->image, $item->id, ServiceGallery::class);
+                    FileHelper::deleteFileFromCloudflare($item->image, $item->id, ProjectGallery::class);
                 }
                 $item->removeFromDB();
             }
@@ -99,20 +110,20 @@ class Project extends BaseModel
             for ($i = 0; $i < count($galleries); $i++) {
                 $g = $galleries[$i];
 
-                if (isset($g['id'])) $gallery = ServiceGallery::find($g['id']);
-                else $gallery = new ServiceGallery();
+                if (isset($g['id'])) $gallery = ProjectGallery::find($g['id']);
+                else $gallery = new ProjectGallery();
 
-                $gallery->service_id = $this->id;
+                $gallery->project_id = $this->id;
                 $gallery->sort = $i;
                 $gallery->save();
 
                 if (isset($g['image'])) {
                     if ($gallery->image) {
-                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ServiceGallery::class);
+                        FileHelper::deleteFileFromCloudflare($gallery->image, $gallery->id, ProjectGallery::class);
                         $gallery->image->removeFromDB();
                     }
                     $file = $g['image'];
-                    FileHelper::uploadFileToCloudflare($file, $gallery->id, ServiceGallery::class, null);
+                    FileHelper::uploadFileToCloudflare($file, $gallery->id, ProjectGallery::class, null);
                     // FileHelper::uploadFile($file, 'service_gallery', $gallery->id, ServiceGallery::class, null, 1);
                 }
             }

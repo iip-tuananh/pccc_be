@@ -185,6 +185,58 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/add-home-page', 'Admin\PostCategoryController@addToHomepage')->name('PostCategory.add.home.page');
     });
 
+    Route::group(['prefix' => 'project-categories'], function() {
+        Route::get('/create', 'Admin\ProjectCategoryController@create')->name('ProjectCategory.create');
+        Route::post('/', 'Admin\ProjectCategoryController@store')->name('ProjectCategory.store');
+        Route::post('/{id}/update', 'Admin\ProjectCategoryController@update')->name('ProjectCategory.update');
+        Route::get('/{id}/edit', 'Admin\ProjectCategoryController@edit')->name('ProjectCategory.edit');
+        Route::get('/{id}/getDataForEdit', 'Admin\ProjectCategoryController@getDataForEdit');
+        Route::get('/{id}/delete', 'Admin\ProjectCategoryController@delete')->name('ProjectCategory.delete');
+        Route::get('/', 'Admin\ProjectCategoryController@index')->name('ProjectCategory.index');
+        Route::get('/searchData', 'Admin\ProjectCategoryController@searchData')->name('ProjectCategory.searchData');
+        Route::post('/nested-sort', 'Admin\ProjectCategoryController@nestedSort')->name('ProjectCategory.nestedSort');
+        Route::post('/add-home-page', 'Admin\ProjectCategoryController@addToHomepage')->name('ProjectCategory.add.home.page');
+    });
+
+    Route::group(['prefix' => 'service-categories'], function() {
+        Route::get('/create', 'Admin\ServiceCategoryController@create')->name('ServiceCategory.create');
+        Route::post('/', 'Admin\ServiceCategoryController@store')->name('ServiceCategory.store');
+        Route::post('/{id}/update', 'Admin\ServiceCategoryController@update')->name('ServiceCategory.update');
+        Route::get('/{id}/edit', 'Admin\ServiceCategoryController@edit')->name('ServiceCategory.edit');
+        Route::get('/{id}/getDataForEdit', 'Admin\ServiceCategoryController@getDataForEdit');
+        Route::get('/{id}/delete', 'Admin\ServiceCategoryController@delete')->name('ServiceCategory.delete');
+        Route::get('/', 'Admin\ServiceCategoryController@index')->name('ServiceCategory.index');
+        Route::get('/searchData', 'Admin\ServiceCategoryController@searchData')->name('ServiceCategory.searchData');
+        Route::post('/nested-sort', 'Admin\ServiceCategoryController@nestedSort')->name('ServiceCategory.nestedSort');
+        Route::post('/add-home-page', 'Admin\ServiceCategoryController@addToHomepage')->name('ServiceCategory.add.home.page');
+    });
+
+    Route::group(['prefix' => 'knowledge-categories'], function() {
+        Route::get('/create', 'Admin\KnowledgeCategoryController@create')->name('knowledgeCategory.create');
+        Route::post('/', 'Admin\KnowledgeCategoryController@store')->name('knowledgeCategory.store');
+        Route::post('/{id}/update', 'Admin\KnowledgeCategoryController@update')->name('knowledgeCategory.update');
+        Route::get('/{id}/edit', 'Admin\KnowledgeCategoryController@edit')->name('knowledgeCategory.edit');
+        Route::get('/{id}/getDataForEdit', 'Admin\KnowledgeCategoryController@getDataForEdit');
+        Route::get('/{id}/delete', 'Admin\KnowledgeCategoryController@delete')->name('knowledgeCategory.delete');
+        Route::get('/', 'Admin\KnowledgeCategoryController@index')->name('knowledgeCategory.index');
+        Route::get('/searchData', 'Admin\KnowledgeCategoryController@searchData')->name('knowledgeCategory.searchData');
+        Route::post('/nested-sort', 'Admin\KnowledgeCategoryController@nestedSort')->name('knowledgeCategory.nestedSort');
+        Route::post('/add-home-page', 'Admin\KnowledgeCategoryController@addToHomepage')->name('knowledgeCategory.add.home.page');
+    });
+
+    Route::group(['prefix' => 'knowledge'], function () {
+        Route::get('/', 'Admin\KnowledgeController@index')->name('knowledge.index');
+        Route::get('/create', 'Admin\KnowledgeController@create')->name('knowledge.create');
+        Route::post('/', 'Admin\KnowledgeController@store')->name('knowledge.store');
+        Route::post('/{id}/update', 'Admin\KnowledgeController@update')->name('knowledge.update');
+        Route::get('/{id}/edit', 'Admin\KnowledgeController@edit')->name('knowledge.edit');
+        Route::get('/{id}/delete', 'Admin\KnowledgeController@delete')->name('knowledge.delete');
+        Route::get('/searchData', 'Admin\KnowledgeController@searchData')->name('knowledge.searchData');
+        Route::get('/{id}/getData', 'Admin\KnowledgeController@getData')->name('knowledge.getData');
+        Route::post('/add-category-special', 'Admin\KnowledgeController@addToCategorySpecial');
+
+    });
+
     Route::group(['prefix' => 'blog-categories'], function() {
         Route::get('/create', 'Admin\BlogCategoryController@create')->name('blogCategory.create');
         Route::post('/', 'Admin\BlogCategoryController@store')->name('blogCategory.store');
@@ -464,6 +516,28 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::post('/{id}/update', 'Admin\BannerController@update')->name('banners.update');
         Route::get('/{id}/delete', 'Admin\BannerController@delete')->name('banners.delete');
         Route::get('/{id}/getDataForEdit', 'Admin\BannerController@getDataForEdit')->name('banners.getDataForEdit');
+    });
+
+    Route::group(['prefix' => 'business'], function () {
+        Route::get('/', 'Admin\BusinessController@index')->name('business.index');
+        Route::get('/searchData', 'Admin\BusinessController@searchData')->name('business.searchData');
+        Route::get('/{id}/show', 'Admin\BusinessController@show')->name('business.show');
+        Route::get('/create', 'Admin\BusinessController@create')->name('business.create');
+        Route::post('/', 'Admin\BusinessController@store')->name('business.store');
+        Route::post('/{id}/update', 'Admin\BusinessController@update')->name('business.update');
+        Route::get('/{id}/delete', 'Admin\BusinessController@delete')->name('business.delete');
+        Route::get('/{id}/getDataForEdit', 'Admin\BusinessController@getDataForEdit')->name('business.getDataForEdit');
+    });
+
+    Route::group(['prefix' => 'achievements'], function () {
+        Route::get('/', 'Admin\AchievementController@index')->name('achievements.index');
+        Route::get('/searchData', 'Admin\AchievementController@searchData')->name('achievements.searchData');
+        Route::get('/{id}/show', 'Admin\AchievementController@show')->name('achievements.show');
+        Route::get('/create', 'Admin\AchievementController@create')->name('achievements.create');
+        Route::post('/', 'Admin\AchievementController@store')->name('achievements.store');
+        Route::post('/{id}/update', 'Admin\AchievementController@update')->name('achievements.update');
+        Route::get('/{id}/delete', 'Admin\AchievementController@delete')->name('achievements.delete');
+        Route::get('/{id}/getDataForEdit', 'Admin\AchievementController@getDataForEdit')->name('achievements.getDataForEdit');
     });
 
     // q&a

@@ -35,6 +35,9 @@ class ProjectController extends Controller
             ->editColumn('name', function ($object) {
                 return '<a href = "'.route('projects.edit',$object->id).'" title = "Xem chi tiết">'.$object->name.'</a>';
             })
+            ->editColumn('cate_id', function ($object) {
+                return $object->category->name ?? '';
+            })
             ->editColumn('created_at', function ($object) {
                 return Carbon::parse($object->created_at)->format("d/m/Y");
             })
@@ -78,10 +81,13 @@ class ProjectController extends Controller
     {
         $rules = [
             'name' => 'required|unique:projects,name',
+            'cate_id' => 'required',
             'status' => 'required|in:0,1',
             'description' => 'nullable|max:255',
             'content' => 'required',
             'image' => 'required|file|mimes:jpg,jpeg,png|max:2000',
+            'galleries' => 'required|array|min:1|max:20',
+            'galleries.*.image' => 'required|file|mimes:png,jpg,jpeg|max:10000',
         ];
 
         $validate = Validator::make(
@@ -101,12 +107,19 @@ class ProjectController extends Controller
         try {
             $object = new ThisModel();
             $object->name = $request->name;
+            $object->cate_id = $request->cate_id;
             $object->description = $request->description;
             $object->content = $request->content;
             $object->status = $request->status;
+            $object->area = $request->area;
+            $object->location = $request->location;
+            $object->service = $request->service;
+            $object->completion_time = $request->completion_time;
+            $object->is_highlight = $request->is_highlight;
             $object->save();
 
             FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
+            $object->syncGalleries($request->galleries);
 
             DB::commit();
             $json->success = true;
@@ -121,6 +134,7 @@ class ProjectController extends Controller
     public function edit(Request $request,$id)
     {
         $object = ThisModel::getDataForEdit($id);
+
         return view($this->view.'.edit', compact('object'));
     }
 
@@ -129,9 +143,12 @@ class ProjectController extends Controller
         $rules = [
             'name' => 'required|unique:projects,name,'.$id,
             'status' => 'required|in:0,1',
+            'cate_id' => 'required',
             'description' => 'nullable|max:255',
             'content' => 'required',
             'image' => 'nullable|file|mimes:jpg,jpeg,png|max:2000',
+            'galleries' => 'nullable|array|min:1|max:20',
+            'galleries.*.image' => 'nullable|file|mimes:png,jpg,jpeg|max:10000',
         ];
 
         $validate = Validator::make(
@@ -154,9 +171,16 @@ class ProjectController extends Controller
             $object = ThisModel::findOrFail($id);
 
             $object->name = $request->name;
+            $object->cate_id = $request->cate_id;
             $object->description = $request->description;
             $object->content = $request->content;
             $object->status = $request->status;
+            $object->area = $request->area;
+            $object->location = $request->location;
+            $object->service = $request->service;
+            $object->completion_time = $request->completion_time;
+            $object->is_highlight = $request->is_highlight;
+
             $object->save();
 
             if ($request->image) {
@@ -165,6 +189,7 @@ class ProjectController extends Controller
                 }
                 FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
             }
+            $object->syncGalleries($request->galleries);
 
             DB::commit();
             $json->success = true;

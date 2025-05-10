@@ -79,12 +79,12 @@ class Post extends BaseModel
         return $this->belongsToMany(CategorySpecial::class,'post_category_special', 'post_id', 'category_special_id');
     }
 
-    public static function searchByFilter($request)
+    public static function searchByFilter($request, $type = 'post')
     {
         $result = self::with([
             'users',
             'image'
-        ]);
+        ])->where('type', $type);
 
         if (!empty($request->name)) {
             $result = $result->where('name', 'like', '%' . $request->name . '%');

@@ -36,6 +36,21 @@
 </style>
 <div class="row">
     <div class="col-sm-8">
+        <div class="form-group mb-3">
+            <label class="form-label required-label">Danh mục</label>
+            <ui-select remove-selected="true" ng-model="form.cate_id" theme="select2" ng-change="changeCategory(form.cate_id)">
+                <ui-select-match placeholder="Chọn danh mục"><% $select.selected.name %></ui-select-match>
+                <ui-select-choices repeat="t.id as t in (form.all_categories | filter: $select.search)">
+                    <span ng-bind="t.name"></span>
+                </ui-select-choices>
+            </ui-select>
+            <span class="invalid-feedback d-block" role="alert">
+                <strong>
+                    <% errors.cate_id[0] %>
+                </strong>
+            </span>
+        </div>
+
         <div class="form-group custom-group mb-4">
             <label class="form-label required-label">Tên tiêu đề</label>
             <input class="form-control " type="text" ng-model="form.name">

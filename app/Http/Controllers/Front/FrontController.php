@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Front;
 use App\Helpers\FileHelper;
 use App\Http\Traits\ResponseTrait;
 use App\Model\Admin\About;
+use App\Model\Admin\Achievement;
 use App\Model\Admin\Block;
 use App\Model\Admin\Blog;
+use App\Model\Admin\Business;
 use App\Model\Admin\Category;
 use App\Model\Admin\CategorySpecial;
 use App\Model\Admin\CloudPool;
@@ -66,15 +68,28 @@ class FrontController extends Controller
     public function homePage() {
         $about = About::getDataForEdit(1);
         $services = Service::query()->with(['image', 'image_label'])->where('status', 1)->latest()->get();
-        $projects = Project::query()->with(['image'])->where('status', 1)->latest()->get();
         $reviews = Review::query()->with(['image'])->latest()->get();
         $partners = Partner::query()->with(['image'])->latest()->get();
-        $blogs = Post::query()->with('category')->where('status', 1)->latest()->limit(3)->get();
+        $blogs = Post::query()->with('category')->where('status', 1)
+            ->where('type', 'post')
+            ->latest()->limit(3)->get();
         $banners = Banner::query()->with(['image'])->latest()->get();
 
         $config = Config::query()->find(1);
 
-        return view('site.home', compact('about', 'services', 'config', 'projects', 'reviews', 'partners', 'blogs', 'banners'));
+
+        $categoriesProject = PostCategory::query()->with(['projects' => function($q) {
+            $q->where('status', 1)
+                ->with('image');
+        }])
+            ->whereHas('projects', function($q) {
+                $q->where('status', 1);
+            })
+            ->where('type', PostCategory::TYPE_PROJECT)->orderBy('sort_order', 'asc')->get();
+
+        $projects = Project::query()->with(['image'])->where('status', 1)->latest()->get();
+
+        return view('site.home', compact('about', 'services', 'config', 'categoriesProject', 'reviews', 'partners', 'blogs', 'banners', 'projects'));
     }
 
     public function abouts(Request $request) {
@@ -84,13 +99,35 @@ class FrontController extends Controller
 
         $config = Config::query()->find(1);
 
-        return view('site.about_us', compact('about', 'config', 'workflow', 'teams'));
+        $business = Business::query()->with('image')->orderBy('created_at', 'asc')->get();
+        $achievements = Achievement::query()->with('image')->orderBy('created_at', 'asc')->get();
+        $partners = Partner::query()->with(['image'])->latest()->get();
+
+        return view('site.about_us', compact('about', 'config', 'workflow', 'teams', 'business', 'achievements', 'partners'));
     }
 
-    public function services(Request $request) {
-        $services = Service::query()->with(['image', 'image_label'])->where('status', 1)->latest()->get();
+    public function services(Request $request, $slug = null) {
+        $category = null;
+        if($slug) {
+            $category = PostCategory::query()->with('parent')->where('slug', $slug)->first();
 
-        return view('site.services', compact('services'));
+            // danh muc con
+            if($category->parent_id) {
+                $services = Service::query()->with(['image', 'image_label'])->where('status', 1)
+                    ->where('cate_id', $category->id)
+                    ->latest()->get();
+            } else {
+                $categoryIds = PostCategory::query()->where('parent_id', $category->id)->pluck('id')->toArray();
+
+                $services = Service::query()->with(['image', 'image_label'])->where('status', 1)
+                    ->whereIn('cate_id', $categoryIds)
+                    ->latest()->get();
+            }
+        } else {
+           $services = Service::query()->with(['image', 'image_label'])->where('status', 1)->latest()->get();
+        }
+
+        return view('site.services', compact('services', 'category'));
     }
 
     public function getServiceDetail(Request $request, $slug) {
@@ -103,42 +140,118 @@ class FrontController extends Controller
         return view('site.service_detail', compact('service', 'services'));
     }
 
-    public function projects(Request $request) {
-        $projects = Project::query()->with(['image'])->where('status', 1)->latest()->get();
+    public function projects(Request $request, $slug = null) {
+        $category = null;
+        if($slug) {
+            $category = PostCategory::findBySlug($slug);
+            $projects = Project::query()->with(['image'])->where('status', 1)
+                ->where('cate_id', $category->id)
+                ->latest()->get();
+        } else {
+            $projects = Project::query()->with(['image'])->where('status', 1)->latest()->get();
+        }
 
-        return view('site.projects', compact('projects'));
+        return view('site.projects', compact('projects', 'category'));
     }
 
     public function getProjectDetail(Request $request, $slug) {
-        $project = Project::findBySlug($slug);
-        return view('site.project_detail', compact('project'));
+        $project = Project::query()->with(['image', 'galleries.image'])->where('slug', $slug)->first();
+        $projectHighlight = Project::query()->where('is_highlight', 1)
+            ->where('status', 1)
+            ->latest()->get();
+
+        $categoriesProject = PostCategory::query()
+            ->whereHas('projects', function($q) {
+                $q->where('status', 1);
+            })
+            ->where('type', PostCategory::TYPE_PROJECT)->orderBy('sort_order', 'asc')->get();
+
+        $projectsRe = Project::query()->with(['image', 'galleries.image'])->where('cate_id', $project->cate_id)
+            ->where('status', 1)
+            ->whereNotIn('id', [$project->id])
+            ->get();
+
+        return view('site.project_detail', compact('project', 'projectHighlight', 'categoriesProject', 'projectsRe'));
     }
 
     public function blogs(Request $request, $slug = null) {
         $category = null;
-        $allCate = PostCategory::query()->get();
+        $allCate = PostCategory::query()->where('type', PostCategory::TYPE_POST)->get();
         if($slug) {
             $category = PostCategory::findBySlug($slug);
             $blogs = Post::query()->with(['image', 'category', 'user_create'])->where('status', 1)
+                ->where('type', 'post')
                 ->where('cate_id', $category->id)
                 ->latest()->paginate(5);
         } else {
-            $blogs = Post::query()->with(['image', 'category', 'user_create'])->where('status', 1)->latest()->paginate(5);
+            $blogs = Post::query()->with(['image', 'category', 'user_create'])->where('status', 1)
+                ->where('type', 'post')
+                ->latest()->paginate(5);
         }
 
         $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
+            ->where('type', 'post')
             ->where('status', 1)->latest()->limit(3)
             ->get();
 
         return view('site.blog', compact('blogs', 'otherBlog', 'category', 'allCate'));
     }
 
+    public function knowledge(Request $request, $slug = null) {
+        $category = null;
+        $allCate = PostCategory::query()->where('type', PostCategory::TYPE_KIENTHUC)
+            ->where('parent_id', 0)
+            ->get();
+
+        if($slug) {
+            $category = PostCategory::query()->with('parent')->where('slug', $slug)->first();
+
+            // danh muc con
+            if($category->parent_id) {
+                $posts = Post::query()->with(['image'])->where('status', 1)
+                    ->where('cate_id', $category->id)
+                    ->latest()->paginate(5);
+            } else {
+                $categoryIds = PostCategory::query()->where('parent_id', $category->id)->pluck('id')->toArray();
+
+                $posts = Post::query()->with(['image'])->where('status', 1)
+                    ->whereIn('cate_id', $categoryIds)
+                    ->latest()->paginate(5);
+            }
+        } else {
+            $posts = Post::query()->with(['image'])->where('status', 1)
+                ->where('type', 'knowledge')
+                ->latest()->paginate(5);
+        }
+
+        $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
+            ->where('type', 'knowledge')
+            ->where('status', 1)->latest()->limit(3)
+            ->get();
+
+        return view('site.knowledge', compact('posts', 'category', 'allCate', 'otherBlog'));
+    }
+
+    public function getKnowledgeDetail(Request $request, $slug) {
+        $blog = Post::query()->with(['image', 'user_create'])->where('slug', $slug)->first();
+        $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
+            ->where('type', 'knowledge')
+            ->where('status', 1)->latest()->limit(3)
+            ->get();
+        $allCate = PostCategory::query()->where('type', 4)
+            ->where('parent_id', 0)
+            ->get();
+
+        return view('site.knowledge_detail', compact('blog', 'otherBlog', 'allCate'));
+    }
     public function blogDetail(Request $request, $slug) {
         $blog = Post::query()->with(['image', 'user_create'])->where('slug', $slug)->first();
         $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
+            ->where('type', 'post')
             ->where('status', 1)->latest()->limit(3)
             ->get();
-        $allCate = PostCategory::query()->get();
+        $allCate = PostCategory::query()->where('type', PostCategory::TYPE_POST)
+            ->get();
 
         return view('site.blog_detail', compact('blog', 'otherBlog', 'allCate'));
     }

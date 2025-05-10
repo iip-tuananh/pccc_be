@@ -78,6 +78,7 @@ class ServiceController extends Controller
 	{
         $rules = [
             'name' => 'required|unique:services,name',
+            'cate_id' => 'required',
             'status' => 'required|in:0,1',
             'description' => 'nullable|max:255',
             'content' => 'required',
@@ -105,6 +106,7 @@ class ServiceController extends Controller
 			$object->description = $request->description;
 			$object->content = $request->content;
 			$object->status = $request->status;
+			$object->cate_id = $request->cate_id;
 			$object->save();
 
             FileHelper::uploadFileToCloudflare($request->image, $object->id, ThisModel::class, 'image');
@@ -131,6 +133,7 @@ class ServiceController extends Controller
 	{
         $rules = [
             'name' => 'required|unique:services,name,'.$id,
+            'cate_id' => 'required',
             'status' => 'required|in:0,1',
             'description' => 'nullable|max:255',
             'content' => 'required',
@@ -161,6 +164,7 @@ class ServiceController extends Controller
 			$object->description = $request->description;
 			$object->content = $request->content;
 			$object->status = $request->status;
+			$object->cate_id = $request->cate_id;
 			$object->save();
 
 			if ($request->image) {

@@ -26,7 +26,9 @@ class PostCategoryController extends Controller
 
 	public function index()
 	{
-        $categories = ThisModel::query()->where('type', PostCategory::TYPE_POST)->get();
+        $categories = ThisModel::query()->where('type', PostCategory::TYPE_POST)
+            ->orderBy('sort_order', 'asc')
+            ->get();
 		return view($this->view.'.index', compact('categories'));
 	}
 

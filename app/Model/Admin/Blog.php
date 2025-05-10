@@ -96,12 +96,16 @@ class Blog extends BaseModel
         return $this->belongsToMany(CategorySpecial::class,'tour_category_special', 'tour_id', 'category_special_id');
     }
 
-    public static function searchByFilter($request)
+    public static function searchByFilter($request, $type = null)
     {
         $result = self::with([
             'user',
             'image'
         ]);
+
+        if($type) {
+            $result->where('type', $type);
+        }
 
         if (!empty($request->name)) {
             $result = $result->where('name', 'like', '%' . $request->name . '%');

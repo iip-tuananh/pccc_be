@@ -2,6 +2,8 @@
 <script>
     class Service extends BaseClass {
         statuses = @json(\App\Model\Admin\Service::STATUSES);
+        all_categories = @json(\App\Model\Admin\PostCategory::getForSelect(3));
+
         no_set = [];
 
         before(form) {
@@ -73,6 +75,7 @@
                 description: this.description,
                 content: this.content,
                 status: this.status,
+                cate_id: this.cate_id,
             }
 
             data = jsonToFormData(data);

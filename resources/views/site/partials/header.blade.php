@@ -40,15 +40,76 @@
                     <li>
                         <a href="{{route('front.abouts')}}">Giới thiệu</a>
                     </li>
-                    <li>
+
+                    <li class="dropdown">
                         <a href="{{route('front.services')}}">Dịch vụ</a>
+
+                        <ul class="sub-menu">
+                            @foreach($categoriesService as $cateService)
+                                <li class="{{ $cateService->childs()->count() ? 'dropdown' : ''}}">
+                                    <a href="{{route('front.services', $cateService->slug)}}">{{ $cateService->name }}
+                                    </a>
+
+                                    @if($cateService->childs()->count())
+                                        <ul class="sub-menu">
+                                            @foreach($cateService->childs as $childService)
+                                                <li><a href="{{route('front.services', $childService->slug)}}">{{ $childService->name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
-                    <li>
+
+
+                    <li class="dropdown">
                         <a href="{{route('front.projects')}}">Dự án</a>
+
+                        <ul class="sub-menu">
+                            @foreach($categoriesProject as $cateProject)
+                                <li><a href="{{route('front.projects', $cateProject->slug)}}">{{ $cateProject->name }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
-                    <li>
-                        <a href="{{route('front.blogs')}}">Blog</a>
+
+
+                    <li class="dropdown">
+                        <a href="{{route('front.knowledge')}}">Kiến thức</a>
+
+                        <ul class="sub-menu">
+                            @foreach($categoriesknoweg as $categoryknoweg)
+                                <li class="{{ $categoryknoweg->childs()->count() ? 'dropdown' : ''}}">
+                                    <a href="{{route('front.knowledge', $categoryknoweg->slug)}}">{{ $categoryknoweg->name }}
+                                    </a>
+
+                                    @if($categoryknoweg->childs()->count())
+                                        <ul class="sub-menu">
+                                            @foreach($categoryknoweg->childs as $childServiceKnow)
+                                                <li><a href="{{route('front.knowledge', $childServiceKnow->slug)}}">{{ $childServiceKnow->name }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
+
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
+
+
+                    <li class="dropdown">
+                        <a href="{{route('front.blogs')}}">Tin tức</a>
+
+                        <ul class="sub-menu">
+                            @foreach($postsCategory as $postCategory)
+                                <li><a href="{{route('front.blogs', $postCategory->slug)}}">{{ $postCategory->name }}</a></li>
+                            @endforeach
+                        </ul>
+                    </li>
+
+
                     <li>
                         <a href="{{ route('front.contact') }}">Liên hệ</a>
                     </li>

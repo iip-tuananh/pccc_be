@@ -5,11 +5,11 @@
 @endsection
 
 @section('title')
-Chỉnh sửa quy trình làm việc
+Chỉnh sửa văn hóa doanh nghiệp
 @endsection
 
 @section('page_title')
-Chỉnh sửa quy trình làm việc
+  Chỉnh sửa văn hóa doanh nghiệp
 @endsection
 
 @section('content')

@@ -54,6 +54,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{ route('ServiceCategory.index') }}" class="nav-link {{ Request::routeIs('ServiceCategory.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Quản lý danh mục dịch vụ</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('services.index') }}" class="nav-link {{ Request::routeIs('services.index') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
                             <p>Quản lý dịch vụ</p>
@@ -79,6 +85,12 @@
                     </p>
                 </a>
                 <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('ProjectCategory.index') }}" class="nav-link {{ Request::routeIs('ProjectCategory.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Quản lý danh mục dự án</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('projects.index') }}" class="nav-link {{ Request::routeIs('projects.index') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
@@ -120,6 +132,33 @@
                 </ul>
             </li>
 
+
+            <li class="nav-item has-treeview  {{ request()->is('admin/knowledge') || request()->is('admin/knowledge/*') || request()->is('admin/knowledge-categories') || request()->is('admin/knowledge-categories/*') ? 'menu-open' : '' }} ">
+
+                <a href="#" class="nav-link {{ request()->is('admin/knowledge') || request()->is('admin/knowledge/*') || request()->is('admin/knowledge-categories') || request()->is('admin/knowledge-categories/*') ? 'active' : '' }}">
+                    <i class="nav-icon fas fa-blog"></i>
+                    <p>
+                        Kiến thức
+                        <i class="fas fa-angle-left right"></i>
+                    </p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{ route('knowledgeCategory.index') }}" class="nav-link {{ Request::routeIs('knowledgeCategory.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Danh mục</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('knowledge.index') }}" class="nav-link {{ Request::routeIs('knowledge.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Quản lý bài viết</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+
             <li class="nav-item has-treeview  {{ request()->is('admin/stores') ||  request()->is('admin/banners') ||  request()->is('admin/origins') || request()->is('admin/manufacturers/*') || request()->is('admin/attributes') ? 'menu-open' : '' }} ">
 
                 <a href="#" class="nav-link">
@@ -146,10 +185,28 @@
                     </li>
 
                     <li class="nav-item has-treeview">
+                        <a href="{{ route('business.index') }}" class="nav-link {{ Request::routeIs('business.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>
+                                Lĩnh vực hoạt động
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview">
+                        <a href="{{ route('achievements.index') }}" class="nav-link {{ Request::routeIs('achievements.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>
+                                Thành tựu
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item has-treeview">
                         <a href="{{ route('workflow.edit') }}" class="nav-link {{ Request::routeIs('workflow.edit') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
                             <p>
-                                Quy trình làm việc
+                                Văn hóa doanh nghiệp
                             </p>
                         </a>
                     </li>
