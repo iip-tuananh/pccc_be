@@ -3152,7 +3152,7 @@ h6 {
 # Navigations
 --------------------------------------------------------------*/
 .main-header {
-  background-color: var(--firdip-secondary, #232728);
+  /*background-color: var(--firdip-secondary, #232728);*/
   position: relative;
 }
 .main-header .container-fluid {
@@ -3712,7 +3712,8 @@ h6 {
   align-items: center;
   position: relative;
   transition: all 500ms ease;
-  color: var(--firdip-white, #fff);
+  /*color: var(--firdip-white, #fff);*/
+  color: #333;
   font-size: 16px;
   font-style: normal;
   font-weight: 500;

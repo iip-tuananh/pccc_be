@@ -80,15 +80,15 @@
                     </div>
                 </div>
 
-                <div class="col-md-6 col-lg-3">
-                    <div class="footer-widget footer-widget--image">
-                        <div class="footer-widget__image">
-                            <a href="tel:{{ $config->hotline }}" class="footer-widget__image__item">
-                                <img src="{{ @$config->image->path ?? '' }}" alt="firdip">
-                            </a>
-                        </div>
-                    </div>
-                </div>
+{{--                <div class="col-md-6 col-lg-3">--}}
+{{--                    <div class="footer-widget footer-widget--image">--}}
+{{--                        <div class="footer-widget__image">--}}
+{{--                            <a href="tel:{{ $config->hotline }}" class="footer-widget__image__item">--}}
+{{--                                <img src="{{ @$config->image->path ?? '' }}" alt="firdip">--}}
+{{--                            </a>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
