@@ -37,9 +37,18 @@
                         <a href="{{ route('front.home-page') }}">Trang chủ</a>
                     </li>
 
-                    <li>
+                    <li class="dropdown">
                         <a href="{{route('front.abouts')}}">Giới thiệu</a>
+
+                        <ul class="sub-menu">
+                            <li><a href="{{route('front.abouts')}}">Tổng quan về {{ $config->short_name_company }}</a></li>
+
+                        @foreach($categoriesAbout as $cateA)
+                                <li><a href="{{route('front.about_page', $cateA->slug)}}">{{ $cateA->name }}</a></li>
+                            @endforeach
+                        </ul>
                     </li>
+
 
                     <li class="dropdown">
                         <a href="{{route('front.services')}}">Dịch vụ</a>

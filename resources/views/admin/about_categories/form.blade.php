@@ -24,14 +24,6 @@
         </div>
 
         <div class="form-group custom-group mb-4">
-            <label class="form-label required-label">Tên danh mục (Tiếng Anh)</label>
-            <input class="form-control " type="text" ng-model="form.name_eng">
-            <span class="invalid-feedback d-block" role="alert">
-                <strong><% errors.name_eng[0] %></strong>
-            </span>
-        </div>
-
-        <div class="form-group custom-group mb-4">
             <label class="form-label">Mô tả danh mục</label>
             <textarea class="form-control ck-editor" ck-editor rows="5" ng-model="form.intro"></textarea>
             <span class="invalid-feedback d-block" role="alert">
@@ -39,13 +31,6 @@
             </span>
         </div>
 
-        <div class="form-group custom-group mb-4">
-            <label class="form-label">Mô tả danh mục (Tiếng Anh)</label>
-            <textarea class="form-control ck-editor" ck-editor rows="5" ng-model="form.intro_eng"></textarea>
-            <span class="invalid-feedback d-block" role="alert">
-                <strong><% errors.intro_eng[0] %></strong>
-            </span>
-        </div>
     </div>
     <div class="col-sm-4">
         <div class="form-group text-center mb-4">

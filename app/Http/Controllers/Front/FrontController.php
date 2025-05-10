@@ -77,7 +77,6 @@ class FrontController extends Controller
 
         $config = Config::query()->find(1);
 
-
         $categoriesProject = PostCategory::query()->with(['projects' => function($q) {
             $q->where('status', 1)
                 ->with('image');
@@ -104,6 +103,13 @@ class FrontController extends Controller
         $partners = Partner::query()->with(['image'])->latest()->get();
 
         return view('site.about_us', compact('about', 'config', 'workflow', 'teams', 'business', 'achievements', 'partners'));
+    }
+
+    public function about_page(Request $request, $slug) {
+        $category = PostCategory::findBySlug($slug);
+        $post = Post::query()->with('image')->where('cate_id', $category->id)->first();
+
+        return view('site.about_page', compact('post', 'category'));
     }
 
     public function services(Request $request, $slug = null) {

@@ -2,6 +2,7 @@
 Route::group(['namespace' => 'Front'], function () {
     Route::get('/','FrontController@homePage')->name('front.home-page');
     Route::get('/gioi-thieu','FrontController@abouts')->name('front.abouts');
+    Route::get('/ve-chung-toi/{slug}','FrontController@about_page')->name('front.about_page');
     Route::get('/dich-vu/{slug?}','FrontController@services')->name('front.services');
     Route::get('/chi-tiet-dich-vu/{slug}','FrontController@getServiceDetail')->name('front.getServiceDetail');
     Route::get('/kien-thuc/{slug?}','FrontController@knowledge')->name('front.knowledge');

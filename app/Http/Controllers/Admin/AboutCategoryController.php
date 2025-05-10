@@ -112,7 +112,6 @@ class AboutCategoryController extends Controller
             [
                 'parent_id' => 'nullable',
                 'name' => 'required|max:255',
-                'name_eng' => 'required|max:255',
                 'intro' => 'nullable',
                 'image' => 'required|file|mimes:jpg,jpeg,png|max:3000'
 
@@ -152,10 +151,8 @@ class AboutCategoryController extends Controller
                 $object->sort_order = 0;
             }
             $object->name = $request->name;
-            $object->name_eng = $request->name;
             $object->type = PostCategory::TYPE_ABOUT;
             $object->intro = $request->intro;
-            $object->intro_eng = $request->intro_eng;
 
             $object->save();
 
@@ -205,7 +202,6 @@ class AboutCategoryController extends Controller
             [
                 'parent_id' => 'nullable',
                 'name' => 'required|max:255',
-                'name_eng' => 'required|max:255',
                 'intro' => 'nullable',
                 'image' => 'nullable|file|mimes:jpg,jpeg,png|max:3000'
 
@@ -245,9 +241,7 @@ class AboutCategoryController extends Controller
                 $object->sort_order = 0;
             }
             $object->name = $request->name;
-            $object->name_eng = $request->name_eng;
             $object->intro = $request->intro;
-            $object->intro_eng = $request->intro_eng;
             $object->type = PostCategory::TYPE_ABOUT;
 
             $object->save();

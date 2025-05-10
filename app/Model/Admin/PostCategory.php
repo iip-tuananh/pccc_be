@@ -22,6 +22,8 @@ class PostCategory extends BaseModel
     public const TYPE_PROJECT = 2;
     public const TYPE_SERVICE = 3;
     public const TYPE_KIENTHUC = 4;
+
+    public const TYPE_ABOUT = 5;
     public function sluggable(): array
     {
         return [

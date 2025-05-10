@@ -271,6 +271,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
         Route::get('/edit', 'Admin\AboutController@edit')->name('abouts.edit');
     });
 
+    Route::group(['prefix' => 'about-page'], function () {
+        Route::get('/', 'Admin\AboutPageController@index')->name('about-page.index');
+        Route::get('/searchData', 'Admin\AboutPageController@searchData')->name('about-page.searchData');
+        Route::get('/{id}/show', 'Admin\AboutPageController@show')->name('about-page.show');
+        Route::get('/{id}/getData', 'Admin\AboutPageController@getData')->name('about-page.getData');
+        Route::get('/create', 'Admin\AboutPageController@create')->name('about-page.create')->middleware('checkPermission:Thêm bài viết');
+        Route::post('/', 'Admin\AboutPageController@store')->name('about-page.store')->middleware('checkPermission:Thêm bài viết');
+        Route::post('/{id}/update', 'Admin\AboutPageController@update')->name('about-page.update')->middleware('checkPermission:Sửa bài viết');
+        Route::get('/{id}/edit', 'Admin\AboutPageController@edit')->name('about-page.edit')->middleware('checkPermission:Sửa bài viết');
+        Route::get('/{id}/delete', 'Admin\AboutPageController@delete')->name('about-page.delete')->middleware('checkPermission:Xóa bài viết');
+    });
+
+
     Route::group(['prefix' => 'workflow'], function () {
         Route::get('/', 'Admin\WorkflowController@index')->name('workflow.index');
         Route::get('/show', 'Admin\WorkflowController@show')->name('workflow.show');

@@ -34,9 +34,21 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{ route('aboutCategory.index') }}" class="nav-link {{ Request::routeIs('aboutCategory.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Quản lý danh mục</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('abouts.edit') }}" class="nav-link {{ Request::routeIs('abouts.edit') ? 'active' : '' }}">
                             <i class="far fas  fa-angle-right nav-icon"></i>
                             <p>Chỉnh sửa trang giới thiệu</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('about-page.index') }}" class="nav-link {{ Request::routeIs('about-page.index') ? 'active' : '' }}">
+                            <i class="far fas  fa-angle-right nav-icon"></i>
+                            <p>Quản lý bài viết giới thiệu</p>
                         </a>
                     </li>
                 </ul>

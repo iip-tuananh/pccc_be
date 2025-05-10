@@ -22,7 +22,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-4">
-                    <div class="footer-widget footer-widget--about">
+                    <div class="footer-widget footer-widget--about" style="color: #7D8081">
                         <h2 class="footer-widget__title">Về chúng tôi</h2>
                         <p class="footer-widget__text">
                            {!! $about->intro !!}
@@ -72,7 +72,7 @@
                         <h2 class="footer-widget__title">Liên kết</h2>
                         <ul class="list-unstyled footer-widget__links">
                             <li class="footer-widget__links__item"><a href="{{ route('front.abouts') }}">Về chúng tôi</a></li>
-                            <li class="footer-widget__links__item"><a href="{{ route('front.blogs') }}">Blog</a></li>
+                            <li class="footer-widget__links__item"><a href="{{ route('front.blogs') }}">Tin tức</a></li>
                             <li class="footer-widget__links__item"><a href="{{ route('front.services') }}">Dịch vụ</a></li>
                             <li class="footer-widget__links__item"><a href="{{ route('front.projects') }}">Dự án</a></li>
                             <li class="footer-widget__links__item"><a href="{{ route('front.contact') }}">Liên hệ</a></li>

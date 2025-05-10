@@ -40,9 +40,14 @@ class HeaderComposer
         $categoriesknoweg = PostCategory::query()->with('childs')->where('parent_id', 0)
             ->where('type', PostCategory::TYPE_KIENTHUC)->orderBy('sort_order', 'asc')->get();
 
+
+        $categoriesAbout = PostCategory::query()->where('parent_id', 0)
+            ->where('type', PostCategory::TYPE_ABOUT)->orderBy('sort_order', 'asc')->get();
+
+
         $view->with(['config' => $config, 'cartItems' => $cartItems, 'totalPriceCart' => $totalPriceCart, 'categories' => $categories,
             'postsCategory' => $postsCategory, 'categoriesProject' => $categoriesProject, 'categoriesService' => $categoriesService,
-            'categoriesknoweg' => $categoriesknoweg
+            'categoriesknoweg' => $categoriesknoweg, 'categoriesAbout' => $categoriesAbout
         ]);
     }
 }
