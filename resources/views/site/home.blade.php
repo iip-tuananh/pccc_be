@@ -239,42 +239,14 @@
         background-repeat: no-repeat;
     }
 
-    /* ========== Tối ưu trên Mobile ========= */
-    @media (max-width: 767px) {
-        /*.main-slider-one__item {*/
-        /*    height: 50vh;             !* giảm chiều cao để vừa màn hình điện thoại *!*/
-        /*}*/
-        .main-slider-one__bg {
-            /* nếu vẫn muốn toàn bộ ảnh nhìn thấy, đổi sang contain */
-             background-size: contain;
-             background-position: center top;
-        }
-    }
+
 
     @media (max-width: 767px) {
         .about-one {
-            padding-top: 0 !important;
+            padding-top: 60px !important;
         }
     }
 
-    @media (max-width: 767px) {
-        /* Kéo slide ra full chiều rộng viewport */
-        .main-slider-one__item {
-            position: relative;
-            width: 100vw;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-        }
-
-        /* Bỏ giới hạn container padding để background và nội dung tràn sát mép */
-        .main-slider-one__item .container {
-            max-width: 100%;
-            padding-left: 0;
-            padding-right: 0;
-        }
-    }
 </style>
 @section('content')
     <!-- Hero Section Start -->
@@ -816,7 +788,6 @@
     </div><!-- /.client-carousel -->
 
 @endsection
-
 @push('scripts')
 
 @endpush
