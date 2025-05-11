@@ -328,19 +328,19 @@
                                     <img src="/site/images/shapes/gas.png" alt="firdip">
                                 </div>
                             </div>
-                            <div class="about-one__thumb__funfact count-box">
-                                <h2 class="about-one__thumb__funfact__coun">
-                                    <span class="count-text" data-stop="{{$about->experience_number ?? '30'}}" data-speed="1500"></span>
-                                    <span>+</span>
-                                </h2>
-                                <p class="about-one__thumb__funfact__text">{{ $about->experience_text }}</p>
-                            </div>
+{{--                            <div class="about-one__thumb__funfact count-box">--}}
+{{--                                <h2 class="about-one__thumb__funfact__coun">--}}
+{{--                                    <span class="count-text" data-stop="{{$about->experience_number ?? '30'}}" data-speed="1500"></span>--}}
+{{--                                    <span>+</span>--}}
+{{--                                </h2>--}}
+{{--                                <p class="about-one__thumb__funfact__text">{{ $about->experience_text }}</p>--}}
+{{--                            </div>--}}
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="about-one__right">
-                        <div class="about-one__top">
+                        <div class="about-one__top" style="margin-top: 35px">
                             <div class="sec-title  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                 <h6 class="sec-title__tagline">
                                     <img src="/site/images/shapes/sec-title-s-1.png" alt="About Us" class="sec-title__img">
@@ -377,19 +377,17 @@
                                         $chunks = array_chunk($about->results, $perColumn);
                                     @endphp
 
-                                    <div class="row">
-                                        @foreach ($chunks as $group)
-                                            <div class="col-lg-12 col-md-6 col-xl-6">
-                                                <ul class="about-two__list__item list-unstyled">
-                                                    @foreach ($group as $item)
-                                                        <li class="about-two__list__item__content">
-                                                            <i class="icon-check-1"></i> {{ $item['title'] }}
-                                                        </li>
-                                                    @endforeach
-                                                </ul>
-                                            </div>
-                                        @endforeach
-                                    </div>
+                                    @foreach ($chunks as $group)
+                                        <div class="col-lg-12 col-md-6 col-xl-6">
+                                            <ul class="about-two__list__item list-unstyled">
+                                                @foreach ($group as $item)
+                                                    <li class="about-two__list__item__content">
+                                                        <i class="icon-check-1"></i> {{ $item['title'] }}
+                                                    </li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endforeach
 
                                 </div>
                             </div>

@@ -2304,7 +2304,7 @@ h6 {
 }
 @media (max-width: 767px) {
   .blog-one--home {
-    padding: 80px 0px 0;
+    padding: 50px 0px 0;
   }
 }
 
@@ -5031,7 +5031,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 @media (max-width: 767px) {
   .testimonials-one--home {
-    padding: 80px 0px;
+    padding: 40px 0px;
   }
 }
 .testimonials-one__item {
