@@ -108,3 +108,42 @@
         transform: scaleY(1) translateZ(0);
     }
 </style>
+
+
+<style>
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--body-font);
+        font-weight: 600;
+        font-family: var(--body-font);
+        line-height: 1.5;
+        margin-bottom: 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    h3 {
+        font-size: 20px;
+    }
+
+    h4 {
+        font-size: 18px;
+    }
+
+    h5 {
+        font-size: 16px;
+    }
+
+    h6 {
+        font-size: 14px;
+    }
+
+    p {
+        margin-bottom: 15px;
+    }
+</style>
