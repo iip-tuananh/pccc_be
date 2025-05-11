@@ -45,44 +45,48 @@
 
                         @foreach($categoriesAbout as $cateA)
                                 <li><a href="{{route('front.about_page', $cateA->slug)}}">{{ $cateA->name }}</a></li>
-                            @endforeach
+                        @endforeach
                         </ul>
                     </li>
 
 
-                    <li class="dropdown">
-                        <a href="{{route('front.services')}}">Dịch vụ</a>
+                    @if($categoriesService->count())
+                        <li class="dropdown">
+                            <a href="{{route('front.services')}}">Dịch vụ</a>
 
-                        <ul class="sub-menu">
-                            @foreach($categoriesService as $cateService)
-                                <li class="{{ $cateService->childs()->count() ? 'dropdown' : ''}}">
-                                    <a href="{{route('front.services', $cateService->slug)}}">{{ $cateService->name }}
-                                    </a>
+                            <ul class="sub-menu">
+                                @foreach($categoriesService as $cateService)
+                                    <li class="{{ $cateService->childs()->count() ? 'dropdown' : ''}}">
+                                        <a href="{{route('front.services', $cateService->slug)}}">{{ $cateService->name }}
+                                        </a>
 
-                                    @if($cateService->childs()->count())
-                                        <ul class="sub-menu">
-                                            @foreach($cateService->childs as $childService)
-                                                <li><a href="{{route('front.services', $childService->slug)}}">{{ $childService->name }}</a></li>
-                                            @endforeach
-                                        </ul>
-                                    @endif
+                                        @if($cateService->childs()->count())
+                                            <ul class="sub-menu">
+                                                @foreach($cateService->childs as $childService)
+                                                    <li><a href="{{route('front.services', $childService->slug)}}">{{ $childService->name }}</a></li>
+                                                @endforeach
+                                            </ul>
+                                        @endif
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+
+                    @endif
 
 
-                                </li>
-                            @endforeach
-                        </ul>
-                    </li>
+                    @if($categoriesProject->count())
+                        <li class="dropdown">
+                            <a href="{{route('front.projects')}}">Dự án</a>
 
+                            <ul class="sub-menu">
+                                @foreach($categoriesProject as $cateProject)
+                                    <li><a href="{{route('front.projects', $cateProject->slug)}}">{{ $cateProject->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @endif
 
-                    <li class="dropdown">
-                        <a href="{{route('front.projects')}}">Dự án</a>
-
-                        <ul class="sub-menu">
-                            @foreach($categoriesProject as $cateProject)
-                                <li><a href="{{route('front.projects', $cateProject->slug)}}">{{ $cateProject->name }}</a></li>
-                            @endforeach
-                        </ul>
-                    </li>
 
 
                     <li class="dropdown">

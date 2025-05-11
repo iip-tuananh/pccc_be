@@ -91,6 +91,13 @@ class PostCategory extends BaseModel
         return $this->hasMany('App\Model\Admin\Post','cate_id','id')->orderBy('created_at','desc');
     }
 
+    public function knowledge()
+    {
+        return $this->hasMany('App\Model\Admin\Post','cate_id','id')
+            ->where('type', 'knowledge')
+            ->orderBy('created_at','desc');
+    }
+
     public function projects()
     {
         return $this->hasMany(Project::class,'cate_id','id')->orderBy('created_at','desc');
@@ -118,17 +125,17 @@ class PostCategory extends BaseModel
 
     public function canDelete ()
     {
-        return Auth::user()->id == $this->created_by && $this->posts->count() == 0;
+        return Auth::user()->id == $this->created_by && $this->posts()->count() == 0 && $this->getChilds()->isEmpty();
     }
 
     public function canDeleteProject ()
     {
-        return Auth::user()->id == $this->created_by && $this->projects()->count() == 0;
+        return Auth::user()->id == $this->created_by && $this->projects()->count() == 0 && $this->getChilds()->isEmpty();
     }
 
     public function canDeleteService ()
     {
-        return Auth::user()->id == $this->created_by && $this->services()->count() == 0;
+        return Auth::user()->id == $this->created_by && $this->services()->count() == 0 && $this->getChilds()->isEmpty();
     }
 
     public static function getForSelect($type = 1) {

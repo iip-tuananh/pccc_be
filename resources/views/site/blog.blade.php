@@ -91,56 +91,6 @@
     <section class="blog-one blog-one--page">
         <div class="container">
             <div class="row gutter-y-60">
-{{--                <div class="col-lg-8">--}}
-{{--                    <div class="row gutter-y-30">--}}
-{{--                        @php--}}
-{{--                            use Carbon\Carbon;--}}
-{{--                            Carbon::setLocale('vi');--}}
-{{--                            $days = [--}}
-{{--                                Carbon::SUNDAY    => 'Chủ nhật',--}}
-{{--                                Carbon::MONDAY    => 'Thứ 2',--}}
-{{--                                Carbon::TUESDAY   => 'Thứ 3',--}}
-{{--                                Carbon::WEDNESDAY => 'Thứ 4',--}}
-{{--                                Carbon::THURSDAY  => 'Thứ 5',--}}
-{{--                                Carbon::FRIDAY    => 'Thứ 6',--}}
-{{--                                Carbon::SATURDAY  => 'Thứ 7',--}}
-{{--                            ];--}}
-
-{{--                        @endphp--}}
-
-{{--                        @foreach($blogs as $blog)--}}
-{{--                                <?php--}}
-{{--                                $d = $blog->created_at;--}}
-{{--                                ?>--}}
-
-
-{{--                            <div class="col-md-12">--}}
-{{--                                <div class="blog-card-two  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='100ms'>--}}
-{{--                                    <a href="{{ route('front.blogDetail', $blog->slug) }}" class="blog-card-two__image">--}}
-{{--                                        <img src="{{ @$blog->image->path ?? '' }}" alt="Elevating Heroism Apeium the Fire Service">--}}
-{{--                                        <p class="blog-card-two__date">{{ $d->format('d') }} {{ $days[$d->dayOfWeek] }}, {{ $d->format('Y') }}</p>--}}
-{{--                                    </a>--}}
-{{--                                    <div class="blog-card-two__content">--}}
-{{--                                        <ul class="list-unstyled blog-card-two__meta">--}}
-{{--                                            <li><a href="{{ route('front.blogDetail', $blog->slug) }}"><i class="fas fa-user-circle"></i> by {{ $blog->user_create->name }}</a></li>--}}
-{{--                                        </ul>--}}
-{{--                                        <h3 class="blog-card-two__title"><a href="{{ route('front.blogDetail', $blog->slug) }}">{{ $blog->name }}</a></h3>--}}
-{{--                                        <p class="blog-card-two__text">{!! $blog->intro !!}</p>--}}
-{{--                                        <a href="{{ route('front.blogDetail', $blog->slug) }}" class="blog-card-two__link"><i class="icon-arrow-left"></i></a>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div><!-- /.col-md-12 -->--}}
-
-{{--                        @endforeach--}}
-
-
-{{--                        <div class="col-12">--}}
-{{--                            {{ $blogs->links('site.pagination.paginate2') }}--}}
-{{--                        </div>--}}
-
-{{--                    </div>--}}
-{{--                </div>--}}
-
                 @php
                     use Carbon\Carbon;
                     Carbon::setLocale('vi');
@@ -162,7 +112,6 @@
                                 $d = $blog->created_at;
                             @endphp
 
-                            {{-- mỗi item nay chiếm 6/12 trên MD trở lên --}}
                             <div class="col-sm-12 col-md-6">
                                 <div class="blog-card-two wow fadeInUp h-100" data-wow-duration='1500ms' data-wow-delay='100ms'>
                                     <a href="{{ route('front.blogDetail', $blog->slug) }}" class="blog-card-two__image">
@@ -240,7 +189,7 @@
                 </div><!-- /.col-lg-4 -->
             </div><!-- /.row -->
         </div><!-- /.container -->
-    </section><!-- /.blog-one blog-one-page -->
+    </section>
 
 @endsection
 

@@ -34,14 +34,41 @@ class HeaderComposer
             })
             ->where('type', PostCategory::TYPE_PROJECT)->orderBy('sort_order', 'asc')->get();
 
-        $categoriesService = PostCategory::query()->with('childs')->where('parent_id', 0)
-            ->where('type', PostCategory::TYPE_SERVICE)->orderBy('sort_order', 'asc')->get();
+        $categoriesService = PostCategory::query()
+            ->with(['childs' => function($q) {
+                $q->whereHas('services', function ($q) {
+                    $q->where('status', 1);
+                })
+                ->orderBy('sort_order', 'asc');
+            }])
+            ->where('parent_id', 0)
+            ->where('type', PostCategory::TYPE_SERVICE)
+            ->whereHas('childs', function($q) {
+                $q->whereHas('services', function ($q) {
+                    $q->where('status', 1);
+                });
+            })
+            ->orderBy('sort_order', 'asc')
+            ->get();
 
-        $categoriesknoweg = PostCategory::query()->with('childs')->where('parent_id', 0)
+        $categoriesknoweg = PostCategory::query()
+            ->with(['childs' => function($q) {
+                $q->whereHas('knowledge', function ($q) {
+                    $q->where('status', 1);
+                })
+                    ->orderBy('sort_order', 'asc');
+            }])
+            ->whereHas('childs', function($q) {
+                $q->whereHas('knowledge', function ($q) {
+                    $q->where('status', 1);
+                });
+            })
+            ->where('parent_id', 0)
             ->where('type', PostCategory::TYPE_KIENTHUC)->orderBy('sort_order', 'asc')->get();
 
 
         $categoriesAbout = PostCategory::query()->where('parent_id', 0)
+            ->has('posts')
             ->where('type', PostCategory::TYPE_ABOUT)->orderBy('sort_order', 'asc')->get();
 
 

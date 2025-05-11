@@ -18,7 +18,14 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/chi-tiet-tin-tuc/{slug}','FrontController@blogDetail')->name('front.blogDetail');
 
 
+    Route::get('/{any}', function () {
+        // Laravel tự load view errors/404.blade.php khi abort(404)
+        abort(404);
+    })
+        ->where('any', '.*');
+
 });
+
 
 
 

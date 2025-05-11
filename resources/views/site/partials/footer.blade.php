@@ -1,21 +1,96 @@
 <footer class="main-footer">
     <div class="main-footer__bg" style="background-image: url(/site/images/shapes/footer-bg.png);"></div>
     <div class="main-footer__top">
+        <style>
+            .main-footer__top__inner {
+                /* background đỏ, padding rộng hơn */
+                background: var(--firdip-base, #CA4445);
+                padding: 40px 60px;
+
+                /* flex layout với gap */
+                display: flex;
+                align-items: center;
+                gap: 24px;
+
+                /* bo góc đáy + đổ bóng */
+                border-radius: 0 0 8px 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Logo container */
+            .footer-logo {
+                background: #fff;
+                padding: 8px 12px;
+                border-radius: 4px;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            /* Đường kẻ chia cách flex (thay hr) */
+            .main-footer__divider {
+                flex-grow: 1;
+                height: 1px;
+                background-color: rgba(255, 255, 255, 0.4);
+            }
+
+            /* Khối chứa icon */
+            .footer-social {
+                display: flex;
+                gap: 12px;
+            }
+
+            /* Style cho từng icon */
+            .footer-social a {
+                width: 36px;
+                height: 36px;
+                display: grid;
+                place-items: center;
+                border: 1px solid rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                background-color: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                transition: background-color 0.3s, border-color 0.3s;
+            }
+            .footer-social a:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+                border-color: rgba(255, 255, 255, 0.8);
+            }
+        </style>
         <div class="container">
+{{--            <div class="main-footer__top__inner">--}}
+{{--                <div class="main-footer__top__left">--}}
+{{--                    <a href="index.html" class="main-footer__top__logo logo-firdip">--}}
+{{--                        <img src="{{$config->image->path}}" width="110" alt="firdip image">--}}
+{{--                    </a>--}}
+{{--                </div>--}}
+{{--                <div class="main-footer__top__right">--}}
+{{--                    <div class="main-footer__top__social">--}}
+{{--                        <a href="{{$config->facebook}}"><i class="icon-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>--}}
+{{--                        <a href="{{$config->twitter}}"><i class="icon-x-twitter" aria-hidden="true"></i> <span class="sr-only">Twitter</span></a>--}}
+{{--                        <a href="{{$config->youtube}}"><i class="icon-youtube" aria-hidden="true"></i><span class="sr-only">youtube</span></a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+
+
+
             <div class="main-footer__top__inner">
-                <div class="main-footer__top__left">
-                    <a href="index.html" class="main-footer__top__logo logo-firdip">
-                        <img src="{{$config->image->path}}" width="110" alt="firdip image">
-                    </a>
+                <!-- Logo -->
+                <div class="footer-logo">
+                    <img src="{{$config->image->path}}" width="110" alt="firdip image">
                 </div>
-                <div class="main-footer__top__right">
-                    <div class="main-footer__top__social">
-                        <a href="{{$config->facebook}}"><i class="icon-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
-                        <a href="{{$config->twitter}}"><i class="icon-x-twitter" aria-hidden="true"></i> <span class="sr-only">Twitter</span></a>
-                        <a href="{{$config->youtube}}"><i class="icon-youtube" aria-hidden="true"></i><span class="sr-only">youtube</span></a>
-                    </div>
+
+                <!-- Đường kẻ chia -->
+                <div class="main-footer__divider"></div>
+
+                <!-- Icon mạng xã hội -->
+                <div class="footer-social">
+                    <a href="{{$config->facebook}}"><i class="fab fa-facebook-f"></i></a>
+                    <a href="{{$config->twitter}}"><i class="icon-x-twitter"></i></a>
+                    <a href="{{$config->youtube}}"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
+
+
         </div>
     </div>
     <div class="main-footer__middle">
@@ -80,15 +155,26 @@
                     </div>
                 </div>
 
-{{--                <div class="col-md-6 col-lg-3">--}}
-{{--                    <div class="footer-widget footer-widget--image">--}}
-{{--                        <div class="footer-widget__image">--}}
-{{--                            <a href="tel:{{ $config->hotline }}" class="footer-widget__image__item">--}}
-{{--                                <img src="{{ @$config->image->path ?? '' }}" alt="firdip">--}}
-{{--                            </a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                <style>
+                    .footer-widget--map {
+                    }
+                    .footer-widget--map .footer-widget__title {
+                        margin-bottom: .75rem;
+                        font-size: 1.125rem;
+                    }
+                    .footer-widget--map .embed-responsive {
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                    }
+                </style>
+                <div class="col-md-6 col-lg-3">
+                    <div class="footer-widget footer-widget--map">
+                        <div class="embed-responsive embed-responsive-4by3">
+                            {!! $config->location !!}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

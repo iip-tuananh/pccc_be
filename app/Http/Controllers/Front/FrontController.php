@@ -107,7 +107,7 @@ class FrontController extends Controller
 
     public function about_page(Request $request, $slug) {
         $category = PostCategory::findBySlug($slug);
-        $post = Post::query()->with('image')->where('cate_id', $category->id)->first();
+        $post = Post::query()->with('image')->where('cate_id', $category->id)->firstOrFail();
 
         return view('site.about_page', compact('post', 'category'));
     }
@@ -188,11 +188,11 @@ class FrontController extends Controller
             $blogs = Post::query()->with(['image', 'category', 'user_create'])->where('status', 1)
                 ->where('type', 'post')
                 ->where('cate_id', $category->id)
-                ->latest()->paginate(5);
+                ->latest()->paginate(6);
         } else {
             $blogs = Post::query()->with(['image', 'category', 'user_create'])->where('status', 1)
                 ->where('type', 'post')
-                ->latest()->paginate(5);
+                ->latest()->paginate(6);
         }
 
         $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
@@ -216,18 +216,20 @@ class FrontController extends Controller
             if($category->parent_id) {
                 $posts = Post::query()->with(['image'])->where('status', 1)
                     ->where('cate_id', $category->id)
-                    ->latest()->paginate(5);
+                    ->where('type', 'knowledge')
+                    ->latest()->paginate(6);
             } else {
                 $categoryIds = PostCategory::query()->where('parent_id', $category->id)->pluck('id')->toArray();
 
                 $posts = Post::query()->with(['image'])->where('status', 1)
                     ->whereIn('cate_id', $categoryIds)
-                    ->latest()->paginate(5);
+                    ->where('type', 'knowledge')
+                    ->latest()->paginate(6);
             }
         } else {
             $posts = Post::query()->with(['image'])->where('status', 1)
                 ->where('type', 'knowledge')
-                ->latest()->paginate(5);
+                ->latest()->paginate(6);
         }
 
         $otherBlog = Post::query()->with(['image', 'category', 'user_create'])
@@ -815,6 +817,7 @@ class FrontController extends Controller
 
         return view('site.contact_us', compact('config'));
     }
+
     public function postContact(Request $request)
     {
         $rule  =  [

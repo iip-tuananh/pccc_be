@@ -50,3 +50,61 @@
 <link rel="stylesheet" href="/site/vendors/slick-carousel/slick-theme.css">
 <!-- template styles -->
 <link rel="stylesheet" href="/site/css/firdip.css">
+
+<style>
+    /* Style chung cho dropdown */
+    .main-menu .main-menu__list li ul {
+        position: absolute;
+        top: 100%;
+        left: -25px;
+        min-width: 235px;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        opacity: 0;
+        visibility: hidden;
+        transform-origin: top center;
+        transform: scaleY(0) translateZ(100px);
+        transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
+        z-index: 99;
+        background-color: #fff !important;
+        padding: 20px 0;               /* bỏ padding ngang, cho từng li tự nhận padding */
+        border-radius: 4px;            /* bo góc khung dropdown */
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    /* Mỗi mục trong dropdown */
+    .main-menu .main-menu__list li ul li {
+        width: 100%;
+        padding: 10px 20px;            /* khoảng cách trong từng item */
+        border-bottom: 1px solid rgba(0,0,0,0.1); /* đường kẻ dưới mỗi item */
+    }
+
+    /* Bỏ kẻ dưới mục cuối cùng */
+    .main-menu .main-menu__list li ul li:last-child {
+        border-bottom: none;
+    }
+
+    /* Link trong mỗi mục */
+    .main-menu .main-menu__list li ul li a {
+        display: block;
+        color: #333;
+        font-size: 14px;
+        text-decoration: none;
+        transition: color .3s;
+    }
+
+    /* Hover state */
+    .main-menu .main-menu__list li ul li:hover,
+    .main-menu .main-menu__list li ul li a:hover {
+        background-color: rgba(0,0,0,0.03);
+        color: var(--primary-color, #e74c3c);
+    }
+
+    /* Khi dropdown mở */
+    .main-menu .main-menu__list li:hover > ul {
+        opacity: 1;
+        visibility: visible;
+        transform: scaleY(1) translateZ(0);
+    }
+</style>

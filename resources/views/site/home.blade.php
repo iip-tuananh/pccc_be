@@ -221,23 +221,8 @@
     }
 
 
-    .main-slider-one__item {
-        position: relative;
-        width: 100%;
-        height: 70vh;               /* cao 70% chiều cao viewport */
-        overflow: hidden;
-    }
 
     /* ========== Phần background-image ========= */
-    .main-slider-one__bg {
-        position: absolute;
-        top: 0; left: 0;
-        width: 100%;
-        height: 100%;
-        background-size: cover;     /* cover để fill đầy khung và crop trung tâm */
-        background-position: center center;
-        background-repeat: no-repeat;
-    }
 
 
 
@@ -246,6 +231,40 @@
             padding-top: 60px !important;
         }
     }
+
+</style>
+
+<style>
+    .main-slider-one__item {
+        position: relative;
+        overflow: hidden;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        width: 100%;
+        /*height: 100vh; */
+    }
+
+    .main-slider-one__img {
+        width: 100%;
+        height: auto;
+        /*object-fit: cover;   !* cover: giữ tỉ lệ và lấp kín khung, crop nếu cần *!*/
+          object-fit: contain;
+    }
+
+    @media (max-width: 768px) {
+        .main-slider-one__item {
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+            height: auto !important;
+        }
+    }
+
+
+
+
+
+
+
 
 </style>
 @section('content')
@@ -264,15 +283,24 @@
 		"margin": 0
 	    }'>
             @foreach($banners as $banner)
+{{--                <div class="item">--}}
+{{--                    <div class="main-slider-one__item">--}}
+{{--                        <div class="main-slider-one__bg" style="background-image: url('{{@$banner->image->path ?? ""}}');"></div>--}}
+{{--                        <div class="container">--}}
+{{--                            <div class="row">--}}
+{{--                                <div class="col-md-12">--}}
+
+{{--                                </div>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+
                 <div class="item">
                     <div class="main-slider-one__item">
-                        <div class="main-slider-one__bg" style="background-image: url('{{@$banner->image->path ?? ""}}');"></div>
+                        <img src="{{@$banner->image->path}}" alt="banner" class="main-slider-one__img">
                         <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-
-                                </div>
-                            </div>
+                            <!-- nếu có nội dung chồng lên ảnh -->
                         </div>
                     </div>
                 </div>
@@ -390,7 +418,7 @@
             </div>
 
             <div class="service-page__carousel firdip-owl__carousel firdip-owl__carousel--basic-nav owl-theme owl-carousel" data-owl-options='{
-			"items": 4,
+			"items": 5,
 			"margin": 30,
 			"smartSpeed": 700,
 			"loop":true,
@@ -590,18 +618,19 @@
 {{--    </section>--}}
     <!-- Testimonials Section End -->
 
-    <section class="testimonials-one testimonials-one--home">
-        <div class="container">
-            <div class="sec-title text-center wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
-                <h6 class="sec-title__tagline">
-                    <img src="/site/images/shapes/sec-title-s-1.png" alt="Testimonial" class="sec-title__img">
-                    Cảm nhận
-                </h6>
-                <h3 class="sec-title__title">Khách hàng nói gì về chúng tôi</h3>
-            </div>
+    @if($reviews->count())
+        <section class="testimonials-one testimonials-one--home">
+            <div class="container">
+                <div class="sec-title text-center wow fadeInUp" data-wow-duration="1500ms" data-wow-delay="000ms">
+                    <h6 class="sec-title__tagline">
+                        <img src="/site/images/shapes/sec-title-s-1.png" alt="Testimonial" class="sec-title__img">
+                        Cảm nhận
+                    </h6>
+                    <h3 class="sec-title__title">Khách hàng nói gì về chúng tôi</h3>
+                </div>
 
-            <div class="testimonials-one__carouse firdip-owl__carousel owl-theme owl-carousel"
-                 data-owl-options='{
+                <div class="testimonials-one__carouse firdip-owl__carousel owl-theme owl-carousel"
+                     data-owl-options='{
            "items": 3,
            "margin": 20,
            "smartSpeed": 600,
@@ -617,34 +646,36 @@
            }
          }'>
 
-                @foreach($reviews as $review)
-                    <div class="testimonials-one__item">
-                        <div class="testimonials-one__top">
-                            <div class="testimonials-one__top__thumb">
-                                <img src="{{ @$review->image->path }}" alt="{{ $review->name }}">
+                    @foreach($reviews as $review)
+                        <div class="testimonials-one__item">
+                            <div class="testimonials-one__top">
+                                <div class="testimonials-one__top__thumb">
+                                    <img src="{{ @$review->image->path }}" alt="{{ $review->name }}">
+                                </div>
+                                <div class="testimonials-one__top__content">
+                                    <h4 class="testimonials-one__top__title">{{ $review->name }}</h4>
+                                    <span class="testimonials-one__top__dec">{{ $review->position }}</span>
+                                </div>
                             </div>
-                            <div class="testimonials-one__top__content">
-                                <h4 class="testimonials-one__top__title">{{ $review->name }}</h4>
-                                <span class="testimonials-one__top__dec">{{ $review->position }}</span>
+                            <div class="testimonials-one__content">
+                                <p class="testimonials-one__text">{{ Str::limit($review->message, 120, '...') }}</p>
+                                <div class="testimonials-one__star">
+                                    @for($i=0; $i<5; $i++)
+                                        <i class="icon-star"></i>
+                                    @endfor
+                                </div>
+                            </div>
+                            <div class="">
+                                <div class=""></div>
                             </div>
                         </div>
-                        <div class="testimonials-one__content">
-                            <p class="testimonials-one__text">{{ Str::limit($review->message, 120, '...') }}</p>
-                            <div class="testimonials-one__star">
-                                @for($i=0; $i<5; $i++)
-                                    <i class="icon-star"></i>
-                                @endfor
-                            </div>
-                        </div>
-                        <div class="">
-                            <div class=""></div>
-                        </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+    @endif
 
     <!-- Blog Section Start -->
     <section class="blog-one blog-one--home">

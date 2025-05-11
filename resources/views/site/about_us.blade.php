@@ -546,7 +546,7 @@
                                 </li>
                                 <li class="contact-details__item">
                                     <i class="fas fa-phone-alt"></i>
-                                    <span>Hotline: <a href="tel:hotline">{{ $config->hotline }}</a></span>
+                                    <span>Hotline: <a href="tel:{{ $config->hotline }}">{{ $config->hotline }}</a></span>
                                 </li>
                             </ul>
                         </div>

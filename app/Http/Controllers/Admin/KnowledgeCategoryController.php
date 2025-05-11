@@ -274,9 +274,9 @@ class KnowledgeCategoryController extends Controller
     public function delete($id)
     {
         $object = ThisModel::findOrFail($id);
-        if (!$object->canDeleteService()) {
+        if (!$object->canDelete()) {
             $message = array(
-                "message" => "Không thể xóa. Đã có dịch vụ đã sử dụng danh mục này!",
+                "message" => "Không thể xóa. Đã có bài viết đã sử dụng danh mục này!",
                 "alert-type" => "warning"
             );
         } else {
