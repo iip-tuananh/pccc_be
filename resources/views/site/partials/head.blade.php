@@ -68,7 +68,7 @@
         transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
         z-index: 99;
         background-color: #fff !important;
-        padding: 20px 0;               /* bỏ padding ngang, cho từng li tự nhận padding */
+        padding: 15px 0;               /* bỏ padding ngang, cho từng li tự nhận padding */
         border-radius: 4px;            /* bo góc khung dropdown */
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
@@ -97,7 +97,7 @@
     /* Hover state */
     .main-menu .main-menu__list li ul li:hover,
     .main-menu .main-menu__list li ul li a:hover {
-        background-color: rgba(0,0,0,0.03);
+        /*background-color: rgba(0,0,0,0.03);*/
         color: var(--primary-color, #e74c3c);
     }
 

@@ -3780,7 +3780,7 @@ h6 {
 .main-menu .sub-menu .dropdown::before {
   position: absolute;
   right: 20px;
-  top: 10px;
+  top: 20px;
   transform: translate(10px 10px);
   font-size: 16px;
   font-weight: 500;
@@ -3804,12 +3804,12 @@ h6 {
 }
 .main-menu .main-menu__list li ul li.current > a,
 .main-menu .main-menu__list li ul li:hover > a {
-  background-color: var(--firdip-white, #fff);
+  /*background-color: var(--firdip-white, #fff);*/
   color: var(--firdip-base, #CA4445);
   text-shadow: 0 0 0.1px currentColor;
 }
 .main-menu .main-menu__list li ul li > ul {
-  top: 0;
+  top: -14px;
   left: calc(100% + 0px);
 }
 .main-menu .main-menu__list li ul li > ul.right-align {
