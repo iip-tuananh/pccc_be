@@ -2,6 +2,9 @@
     <div class="main-footer__bg" style="background-image: url(/site/images/shapes/footer-bg.png);"></div>
     <div class="main-footer__top">
         <style>
+            .main-footer__top {
+                display: none;
+            }
             .main-footer__top__inner {
                 /* background đỏ, padding rộng hơn */
                 background: var(--firdip-base, #CA4445);

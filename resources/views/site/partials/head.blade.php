@@ -57,7 +57,7 @@
         position: absolute;
         top: 100%;
         left: -25px;
-        min-width: 235px;
+        min-width: 320px;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
@@ -68,7 +68,7 @@
         transition: opacity 500ms ease, visibility 500ms ease, transform 700ms ease;
         z-index: 99;
         background-color: #fff !important;
-        padding: 15px 0;               /* bỏ padding ngang, cho từng li tự nhận padding */
+        /* padding: 15px 0;               bỏ padding ngang, cho từng li tự nhận padding */
         border-radius: 4px;            /* bo góc khung dropdown */
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
@@ -76,7 +76,7 @@
     /* Mỗi mục trong dropdown */
     .main-menu .main-menu__list li ul li {
         width: 100%;
-        padding: 10px 20px;            /* khoảng cách trong từng item */
+        /* padding: 10px 20px; */
         border-bottom: 1px solid rgba(0,0,0,0.1); /* đường kẻ dưới mỗi item */
     }
 

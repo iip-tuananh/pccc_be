@@ -53,16 +53,8 @@ class HeaderComposer
 
         $categoriesknoweg = PostCategory::query()
             ->with(['childs' => function($q) {
-                $q->whereHas('knowledge', function ($q) {
-                    $q->where('status', 1);
-                })
-                    ->orderBy('sort_order', 'asc');
+                $q->orderBy('sort_order', 'asc');
             }])
-            ->whereHas('childs', function($q) {
-                $q->whereHas('knowledge', function ($q) {
-                    $q->where('status', 1);
-                });
-            })
             ->where('parent_id', 0)
             ->where('type', PostCategory::TYPE_KIENTHUC)->orderBy('sort_order', 'asc')->get();
 
