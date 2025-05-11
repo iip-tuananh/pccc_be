@@ -121,7 +121,7 @@
                                 </div>
                                 <div class="footer-widget__contact__inner">
                                     <a href="tel:{{ $config->hotline }}" class="footer-widget__contact__text">{{ $config->hotline }}</a>
-                                    <a href="tel:{{ $config->zalo }}" class="footer-widget__contact__text">{{ $config->zalo }}</a>
+                                    {{-- <a href="tel:{{ $config->zalo }}" class="footer-widget__contact__text">{{ $config->zalo }}</a> --}}
                                 </div>
                             </li>
                             <li class="footer-widget__contact__item">
