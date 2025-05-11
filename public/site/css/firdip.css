@@ -10158,7 +10158,7 @@ body.megamenu-popup-active .mobile-nav__content {
     margin-top: 15px;
 }
 .mobile-nav__contact li a {
-    color: inherit;
+    /* color: inherit; */
     transition: 500ms;
 }
 .mobile-nav__contact li a:hover {
