@@ -333,7 +333,7 @@
                         <div class="col-xl-7 col-lg-8 col-md-8">
                             <div class="sec-title  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                 <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png"
-                                                                    alt="Service" class="sec-title__img"> Lĩnh vực hoạt động</h6>
+                                                                    alt="Service" class="sec-title__img"> Dịch vụ</h6>
 
                                 <h3 class="sec-title__title">Lĩnh vực hoạt động</h3>
                             </div>
