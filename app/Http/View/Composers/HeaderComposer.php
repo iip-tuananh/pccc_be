@@ -52,7 +52,9 @@ class HeaderComposer
 
 
         $categoriesAbout = PostCategory::query()->where('parent_id', 0)
-            ->has('posts')
+//            ->whereHas('posts', function($q) {
+//                $q->where('status', 1);
+//            })
             ->where('type', PostCategory::TYPE_ABOUT)->orderBy('sort_order', 'asc')->get();
 
 

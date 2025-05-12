@@ -1,5 +1,5 @@
 <footer class="main-footer">
-    <div class="main-footer__bg" style="background-image: url(/site/images/shapes/footer-bg.png);"></div>
+    <div class="main-footer__bg" style="background-image: url(/site/images/shapes/h-prl-two_bg.jpg);"></div>
     <div class="main-footer__top">
         <style>
             .main-footer__top {
@@ -100,7 +100,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-lg-4">
-                    <div class="footer-widget footer-widget--about" style="color: #7D8081">
+                    <div class="footer-widget footer-widget--about" style="color: #ffffff">
                         <h2 class="footer-widget__title">Về chúng tôi</h2>
                         <p class="footer-widget__text">
                            {!! $about->intro !!}
@@ -120,7 +120,7 @@
                                     <i class="icon-telephone-call-1"></i>
                                 </div>
                                 <div class="footer-widget__contact__inner">
-                                    <a href="tel:{{ $config->hotline }}" class="footer-widget__contact__text">{{ $config->hotline }}</a>
+                                    <a href="tel:{{ $config->hotline }}" class="footer-widget__contact__text" style="color: #ffffff">{{ $config->hotline }}</a>
                                     {{-- <a href="tel:{{ $config->zalo }}" class="footer-widget__contact__text">{{ $config->zalo }}</a> --}}
                                 </div>
                             </li>
@@ -129,7 +129,7 @@
                                     <i class="icon-glove"></i>
                                 </div>
                                 <div class="footer-widget__contact__inner">
-                                    <a href="https:{{ request()->getHost() }}" class="footer-widget__contact__text">{{ request()->getHost() }}</a>
+                                    <a href="https:{{ request()->getHost() }}" class="footer-widget__contact__text" style="color: #ffffff">{{ request()->getHost() }}</a>
                                 </div>
                             </li>
                             <li class="footer-widget__contact__item">
@@ -149,11 +149,11 @@
                     <div class="footer-widget footer-widget--link">
                         <h2 class="footer-widget__title">Liên kết</h2>
                         <ul class="list-unstyled footer-widget__links">
-                            <li class="footer-widget__links__item"><a href="{{ route('front.abouts') }}">Về chúng tôi</a></li>
-                            <li class="footer-widget__links__item"><a href="{{ route('front.blogs') }}">Tin tức</a></li>
-                            <li class="footer-widget__links__item"><a href="{{ route('front.services') }}">Dịch vụ</a></li>
-                            <li class="footer-widget__links__item"><a href="{{ route('front.projects') }}">Dự án</a></li>
-                            <li class="footer-widget__links__item"><a href="{{ route('front.contact') }}">Liên hệ</a></li>
+                            <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.abouts') }}">Về chúng tôi</a></li>
+                            <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.blogs') }}">Tin tức</a></li>
+                            <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.services') }}">Dịch vụ</a></li>
+                            <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.projects') }}">Dự án</a></li>
+                            <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.contact') }}">Liên hệ</a></li>
                         </ul>
                     </div>
                 </div>

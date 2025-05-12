@@ -201,7 +201,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="about-one__right">
-                        <div class="about-one__top">
+                        <div class="about-one__top" style="margin-top: 35px">
                             <div class="sec-title  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
                                 <h6 class="sec-title__tagline">
                                     <img src="/site/images/shapes/sec-title-s-1.png" alt="About Us" class="sec-title__img">
@@ -265,61 +265,141 @@
     </section>
     <!-- About Section End -->
 
-    <section class="service-two">
-        <div class="service-two__bg" style="background-image: url(/site/images/shapes/service-bg-1-1.png);"></div>
-        <div class="container">
-            <div class="sec-title text-center sec-title--two wow fadeInUp" data-wow-duration='1500ms'
-                data-wow-delay='000ms'>
-                <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png" alt="Service"
-                        class="sec-title__img"> Lĩnh vực hoạt động</h6>
-                <h3 class="sec-title__title"> Lĩnh vực hoạt động</h3>
-            </div>
-            <div class="row gutter-y-30">
-                @foreach ($business as $busines)
-                    <div class="col-xl-3 col-lg-4 col-md-6">
-                        <div class="service-two__item  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='300ms'>
-                            <div class="service-two__item__inner">
-                                <div class="service-two__item__icon">
-                                    <img style="height: auto" decoding="async" src="{{ @$busines->image->path ?? '' }}"
-                                        alt="icon" width="60" height="60">
-                                </div>
-                                <div class="service-two__item__content">
-                                    <h4 class="service-two__item__title">{{ $busines->title }}</h4>
-                                    <p class="service-two__item__text">
-                                        {{ $busines->content }}
-                                    </p>
-                                    <div class="service-two__item__btn">
-                                        <a href="#" class="service-two__item__btn__link"><i
-                                                class="icon-arrow-left"></i></a>
-                                    </div>
-                                </div>
+{{--    <section class="service-two">--}}
+{{--        <div class="service-two__bg" style="background-image: url(/site/images/shapes/service-bg-1-1.png);"></div>--}}
+{{--        <div class="container">--}}
+{{--            <div class="sec-title text-center sec-title--two wow fadeInUp" data-wow-duration='1500ms'--}}
+{{--                data-wow-delay='000ms'>--}}
+{{--                <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png" alt="Service"--}}
+{{--                        class="sec-title__img"> Lĩnh vực hoạt động</h6>--}}
+{{--                <h3 class="sec-title__title"> Lĩnh vực hoạt động</h3>--}}
+{{--            </div>--}}
+{{--            <div class="row gutter-y-30">--}}
+{{--                @foreach ($business as $busines)--}}
+{{--                    <div class="col-xl-3 col-lg-4 col-md-6">--}}
+{{--                        <div class="service-two__item  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='300ms'>--}}
+{{--                            <div class="service-two__item__inner">--}}
+{{--                                <div class="service-two__item__icon">--}}
+{{--                                    <img style="height: auto" decoding="async" src="{{ @$busines->image->path ?? '' }}"--}}
+{{--                                        alt="icon" width="60" height="60">--}}
+{{--                                </div>--}}
+{{--                                <div class="service-two__item__content">--}}
+{{--                                    <h4 class="service-two__item__title">{{ $busines->title }}</h4>--}}
+{{--                                    <p class="service-two__item__text">--}}
+{{--                                        {{ $busines->content }}--}}
+{{--                                    </p>--}}
+{{--                                    <div class="service-two__item__btn">--}}
+{{--                                        <a href="#" class="service-two__item__btn__link"><i--}}
+{{--                                                class="icon-arrow-left"></i></a>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+
+{{--                            <div class="service-two__item__hover">--}}
+{{--                                <div class="service-two__item__hover__inner">--}}
+{{--                                    <div class="service-two__item__hover__bg"--}}
+{{--                                        style="background-image: url(/site/images/backgrounds/service-2-4.png);"></div>--}}
+{{--                                    <div class="service-two__item__hover__icon">--}}
+{{--                                        <img style="height: auto" decoding="async" src="{{ @$busines->image->path ?? '' }}"--}}
+{{--                                            alt="icon" width="60" height="60">--}}
+{{--                                    </div>--}}
+{{--                                    <div class="service-two__item__hover__content">--}}
+{{--                                        <h4 class="service-two__item__hover__title">{{ $busines->title }}</h4>--}}
+{{--                                        <p class="service-two__item__hover__text">--}}
+{{--                                            {{ $busines->content }}</p>--}}
+
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
+
+
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                @endforeach--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </section>--}}
+
+
+
+    @if ($services->count())
+
+        <!-- Service Section Start -->
+        <section class="service-three" style="margin-top: 40px">
+            <div class="service-three__bg" style="background-image: url(/site/images/shapes/service-bg-3-1.png);"></div>
+            <div class="container">
+                    <div class="row" style="margin-top: 30px">
+                        <div class="col-xl-7 col-lg-8 col-md-8">
+                            <div class="sec-title  wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
+                                <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png"
+                                                                    alt="Service" class="sec-title__img"> Lĩnh vực hoạt động</h6>
+
+                                <h3 class="sec-title__title">Lĩnh vực hoạt động</h3>
                             </div>
-
-
-                            <div class="service-two__item__hover">
-                                <div class="service-two__item__hover__inner">
-                                    <div class="service-two__item__hover__bg"
-                                        style="background-image: url(/site/images/backgrounds/service-2-4.png);"></div>
-                                    <div class="service-two__item__hover__icon">
-                                        <img style="height: auto" decoding="async" src="{{ @$busines->image->path ?? '' }}"
-                                            alt="icon" width="60" height="60">
-                                    </div>
-                                    <div class="service-two__item__hover__content">
-                                        <h4 class="service-two__item__hover__title">{{ $busines->title }}</h4>
-                                        <p class="service-two__item__hover__text">
-                                            {{ $busines->content }}</p>
-
-                                    </div>
-                                </div>
-                            </div>
-
-
                         </div>
                     </div>
-                @endforeach
+
+                    <div class="service-three__carousel firdip-owl__carousel firdip-owl__carousel--basic-nav owl-theme owl-carousel"
+                         data-owl-options='{
+			"items": 4,
+			"margin": 30,
+			"smartSpeed": 700,
+			"loop":true,
+			"autoplay": 6000,
+			"nav":true,
+			"navText": ["<span class=\"icon-arrow-right\"></span>","<span class=\"icon-arrow-left\"></span>"],
+			"dots":false,
+			"responsive":{
+			    "0":{
+				"items":1,
+				"margin": 10
+			    },
+			    "575":{
+				"items":1,
+				"margin": 30
+			    },
+			    "768":{
+				"items":2,
+				"margin": 30
+			    },
+			    "992":{
+				"items": 3,
+				"margin": 30
+			    },
+			    "1200":{
+				"items": 3,
+				"margin": 30
+			    }
+			}
+			}'>
+                        @foreach ($services as $service)
+                            <div class="service-three__item wow fadeInUp" data-wow-duration='1500ms'
+                                 data-wow-delay='300ms'>
+                                <div class="service-three__item__top">
+                                    <h4 class="service-three__item__title">{{ $service->name }}</h4>
+                                </div>
+                                <div class="service-three__item__thumb">
+                                    <img src="{{ @$service->image->path ?? '' }}" alt="firdip image">
+                                </div>
+                                <p class="service-three__item__text"></p>
+                                <div class="service-three__item__btn">
+                                    <a href="{{ route('front.getServiceDetail', $service->slug) }}"
+                                       class="firdip-btn service-three__item__btn__link">Chi tiết <i
+                                            class="icon-arrow-left"></i></a>
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+
+
+
+
             </div>
-        </div>
-    </section>
+        </section>
+        <!-- Service Section End -->
+    @endif
 
     {{-- <section class="funfact-two" style="margin-top: 30px">
         <div class="container">
@@ -349,15 +429,16 @@
         </div>
     </section> --}}
 
-    {{-- <section class="team-one team-one--page" style="padding:80px 0px">
-        <div class="container">
-            <div class="sec-title text-center wow fadeInUp animated" data-wow-duration="1500ms" data-wow-delay="000ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
-                <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png" alt="FAQS" class="sec-title__img">Đội ngũ</h6>
-                <h3 class="sec-title__title">Đội ngũ của chúng tôi</h3>
-            </div>
+    @if($teams->count())
+        <section class="team-one team-one--page" style="padding:80px 0px">
+            <div class="container">
+                <div class="sec-title text-center wow fadeInUp animated" data-wow-duration="1500ms" data-wow-delay="000ms" style="visibility: visible; animation-duration: 1500ms; animation-delay: 0ms; animation-name: fadeInUp;">
+                    <h6 class="sec-title__tagline"><img src="/site/images/shapes/sec-title-s-1.png" alt="FAQS" class="sec-title__img">Đội ngũ</h6>
+                    <h3 class="sec-title__title">Đội ngũ của chúng tôi</h3>
+                </div>
 
 
-            <div class="team-one__carousel firdip-owl__carousel firdip-owl__carousel--with-shadow firdip-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
+                <div class="team-one__carousel firdip-owl__carousel firdip-owl__carousel--with-shadow firdip-owl__carousel--basic-nav owl-carousel owl-theme" data-owl-options='{
 			"items": 1,
 			"margin": 0,
 			"loop": false,
@@ -380,41 +461,43 @@
 				}
 			}
 		}'>
-                @foreach ($teams as $team)
-                    <div class="item">
-                        <div class="team-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
-                            <div class="team-card__inner">
-                                <div class="team-card__image">
-                                    <img src="{{ @$team->image->path ?? '' }}" alt="Annette Black">
-                                </div>
-                                <div class="team-card__content">
-                                    <div class="team-card__content__inner">
-                                        <div class="team-card__content__inner__item">
-                                            <h3 class="team-card__content__title"><a href="#">{{ $team->name }}</a></h3>
-                                            <h6 class="team-card__content__designation">{{ $team->position }}</h6>
-                                        </div>
-                                        <div class="team-card__content__hover">
-                                            <div class="team-card__content__hover__icon">
-                                                <i class="icon-share-1"></i>
+                    @foreach ($teams as $team)
+                        <div class="item">
+                            <div class="team-card wow fadeInUp" data-wow-duration='1500ms' data-wow-delay='000ms'>
+                                <div class="team-card__inner">
+                                    <div class="team-card__image">
+                                        <img src="{{ @$team->image->path ?? '' }}" alt="Annette Black">
+                                    </div>
+                                    <div class="team-card__content">
+                                        <div class="team-card__content__inner">
+                                            <div class="team-card__content__inner__item">
+                                                <h3 class="team-card__content__title"><a href="#">{{ $team->name }}</a></h3>
+                                                <h6 class="team-card__content__designation">{{ $team->position }}</h6>
                                             </div>
-                                            <div class="team-card__content__hover__social">
-                                                <a href="{{ $team->tw }}"><i class="icon-x-twitter" aria-hidden="true"></i> <span class="sr-only">Twitter</span></a>
-                                                <a href="{{ $team->facebook }}"><i class="icon-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
-                                                <a href="{{ $team->pri }}"><i class="icon-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pinterest</span></a>
-                                                <a href="{{ $team->ins }}"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+                                            <div class="team-card__content__hover">
+                                                <div class="team-card__content__hover__icon">
+                                                    <i class="icon-share-1"></i>
+                                                </div>
+                                                <div class="team-card__content__hover__social">
+                                                    <a href="{{ $team->tw }}"><i class="icon-x-twitter" aria-hidden="true"></i> <span class="sr-only">Twitter</span></a>
+                                                    <a href="{{ $team->facebook }}"><i class="icon-facebook-f" aria-hidden="true"></i><span class="sr-only">Facebook</span></a>
+                                                    <a href="{{ $team->pri }}"><i class="icon-pinterest-p" aria-hidden="true"></i><span class="sr-only">Pinterest</span></a>
+                                                    <a href="{{ $team->ins }}"><i class="fab fa-instagram" aria-hidden="true"></i><span class="sr-only">Instagram</span></a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
 
 
-            </div><!-- /.row -->
-        </div><!-- /.container -->
-    </section> --}}
+                </div><!-- /.row -->
+            </div><!-- /.container -->
+        </section>
+
+    @endif
 
 
     <section class="faq-one" style="padding: 40px 0px">

@@ -2484,7 +2484,7 @@ h6 {
 .main-footer {
     position: relative;
     z-index: 1;
-    background: var(--firdip-secondary, #232728);
+    background:#000;
     margin-top: 55px;
     padding-top: 1px;
 }
@@ -2501,7 +2501,7 @@ h6 {
     z-index: -1;
     mix-blend-mode: luminosity;
     opacity: 0.4;
-    animation: bgSlide 10s ease-in-out infinite;
+    /*animation: bgSlide 10s ease-in-out infinite;*/
 }
 .main-footer__top__inner {
     margin-top: -55px;

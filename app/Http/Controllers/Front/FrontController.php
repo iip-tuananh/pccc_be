@@ -101,13 +101,16 @@ class FrontController extends Controller
         $business = Business::query()->with('image')->orderBy('created_at', 'asc')->get();
         $achievements = Achievement::query()->with('image')->orderBy('created_at', 'asc')->get();
         $partners = Partner::query()->with(['image'])->latest()->get();
+        $services = Service::query()->with(['image', 'image_label'])->where('status', 1)->latest()->get();
 
-        return view('site.about_us', compact('about', 'config', 'workflow', 'teams', 'business', 'achievements', 'partners'));
+        return view('site.about_us', compact('about', 'config', 'workflow', 'teams', 'services', 'achievements', 'partners'));
     }
 
     public function about_page(Request $request, $slug) {
         $category = PostCategory::findBySlug($slug);
-        $post = Post::query()->with('image')->where('cate_id', $category->id)->firstOrFail();
+        $post = Post::query()->with('image')->where('cate_id', $category->id)
+            ->where('status', 1)
+            ->firstOrFail();
 
         return view('site.about_page', compact('post', 'category'));
     }
