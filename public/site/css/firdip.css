@@ -3090,7 +3090,7 @@ h6 {
   --------------------------------------------------------------*/
 .topbar-one {
     position: relative;
-    background: var(--firdip-base, #ca4445);
+    background: #21974E;
 }
 .topbar-one .container-fluid {
     max-width: 1760px;
@@ -3134,7 +3134,7 @@ h6 {
     margin-left: 30px;
 }
 .topbar-one__right {
-    background: var(--firdip-secondary, #232728);
+    background: #f57d20;
     padding-left: 50px;
     position: relative;
     padding-top: 10px;
@@ -3143,7 +3143,7 @@ h6 {
 }
 .topbar-one__right::after {
     content: "";
-    background: var(--firdip-secondary, #232728);
+    background: #f57d20;
     width: 9999999px;
     height: 100%;
     position: absolute;
@@ -13146,6 +13146,7 @@ body.megamenu-popup-active .mobile-nav__content {
 }
 .service-three__item__thumb img {
     object-fit: cover;
+    height: 265px;
     width: 100%;
     transition: all 0.4s ease-in-out;
 }

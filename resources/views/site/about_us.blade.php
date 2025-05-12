@@ -390,12 +390,7 @@
                                 </div>
                             </div>
                         @endforeach
-
                     </div>
-
-
-
-
             </div>
         </section>
         <!-- Service Section End -->

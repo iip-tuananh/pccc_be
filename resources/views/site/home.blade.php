@@ -414,7 +414,7 @@
 
     <!-- Service Section Start -->
     <section class="service-page service-page--home">
-        <div class="service-page__bg" style="background-image: url(/site/images/shapes/service-1-1.png);"></div>
+        <div class="service-page__bg" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/site/images/shapes/h-prl-two_bg.jpg);"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-7">

@@ -145,7 +145,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-2">
+                {{-- <div class="col-md-6 col-lg-2">
                     <div class="footer-widget footer-widget--link">
                         <h2 class="footer-widget__title">Liên kết</h2>
                         <ul class="list-unstyled footer-widget__links">
@@ -156,7 +156,7 @@
                             <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.contact') }}">Liên hệ</a></li>
                         </ul>
                     </div>
-                </div>
+                </div> --}}
 
                 <style>
                     .footer-widget--map {
@@ -171,7 +171,7 @@
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                     }
                 </style>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-5">
                     <div class="footer-widget footer-widget--map">
                         <div class="embed-responsive embed-responsive-4by3">
                             {!! $config->location !!}
