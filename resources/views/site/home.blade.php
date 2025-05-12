@@ -414,7 +414,7 @@
 
     <!-- Service Section Start -->
     <section class="service-page service-page--home">
-        <div class="service-page__bg" style="background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/site/images/shapes/h-prl-two_bg.jpg);"></div>
+        <div class="service-page__bg" style="background-size: cover !important;background-repeat: no-repeat !important; background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(/site/images/shapes/h-prl-two_bg.jpg);"></div>
         <div class="container">
             <div class="row">
                 <div class="col-md-7">
@@ -626,6 +626,17 @@
         </div>
     </section>
 
+    <style>
+        .service-three__item.wow.fadeInUp {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. Đẩy nút “Chi tiết” xuống đáy card */
+        .service-three__item__btn {
+            margin-top: auto;
+        }
+    </style>
     @if ($categoriesProject->count())
 
         <!-- Service Section Start -->
@@ -689,6 +700,7 @@
                                     <img src="{{ @$project->image->path ?? '' }}" alt="firdip image">
                                 </div>
                                 <p class="service-three__item__text"></p>
+
                                 <div class="service-three__item__btn">
                                     <a href="{{ route('front.getProjectDetail', $project->slug) }}"
                                         class="firdip-btn service-three__item__btn__link">Chi tiết <i
@@ -911,4 +923,14 @@
     @endif
 @endsection
 @push('scripts')
+    <script>
+        function eqHeights() {
+            const $cards = $('.service-three__item.wow.fadeInUp');
+            $cards.height('auto');
+            const maxH = Math.max(...$cards.map((i,el) => $(el).height()).get());
+            $cards.height(maxH);
+        }
+        $(window).on('load resize', eqHeights);
+    </script>
+
 @endpush

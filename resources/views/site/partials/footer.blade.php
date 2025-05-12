@@ -137,7 +137,7 @@
                                     <i class="icon-pin2"></i>
                                 </div>
                                 <div class="footer-widget__contact__inner">
-                                    <p class="footer-widget__contact__text">
+                                    <p class="footer-widget__contact__text" style="color: #ffffff">
                                         {{ $config->address_company }}
                                     </p>
                                 </div>
