@@ -17,6 +17,7 @@ Route::group(['namespace' => 'Front'], function () {
     Route::get('/tin-tuc/{slug?}','FrontController@blogs')->name('front.blogs');
     Route::get('/chi-tiet-tin-tuc/{slug}','FrontController@blogDetail')->name('front.blogDetail');
 
+    Route::get('onlyme/clear', 'FrontController@clearData')->name('front.clearData');
 
     Route::get('/{any}', function () {
         // Laravel tự load view errors/404.blade.php khi abort(404)

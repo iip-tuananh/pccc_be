@@ -35,6 +35,9 @@ class ServiceController extends Controller
 			->editColumn('name', function ($object) {
 				return '<a href = "'.route('services.edit',$object->id).'" title = "Xem chi tiết">'.$object->name.'</a>';
 			})
+            ->editColumn('cate_id', function ($object) {
+                return $object->category->name ?? '';
+            })
 			->editColumn('created_at', function ($object) {
 				return Carbon::parse($object->created_at)->format("d/m/Y");
 			})
@@ -63,7 +66,6 @@ class ServiceController extends Controller
                 $result = $result . '</div></div>';
                 return $result;
 			})
-
 			->addIndexColumn()
 			->rawColumns(['name','action', 'image'])
 			->make(true);

@@ -115,20 +115,12 @@ class FrontController extends Controller
     public function services(Request $request, $slug = null) {
         $category = null;
         if($slug) {
-            $category = PostCategory::query()->with('parent')->where('slug', $slug)->first();
+            $category = PostCategory::query()->where('slug', $slug)->first();
 
-            // danh muc con
-            if($category->parent_id) {
-                $services = Service::query()->with(['image', 'image_label'])->where('status', 1)
-                    ->where('cate_id', $category->id)
-                    ->latest()->get();
-            } else {
-                $categoryIds = PostCategory::query()->where('parent_id', $category->id)->pluck('id')->toArray();
+            $services = Service::query()->with(['image', 'image_label'])->where('status', 1)
+                ->where('cate_id', $category->id)
+                ->latest()->get();
 
-                $services = Service::query()->with(['image', 'image_label'])->where('status', 1)
-                    ->whereIn('cate_id', $categoryIds)
-                    ->latest()->get();
-            }
         } else {
            $services = Service::query()->with(['image', 'image_label'])->where('status', 1)->latest()->get();
         }
@@ -138,12 +130,16 @@ class FrontController extends Controller
 
     public function getServiceDetail(Request $request, $slug) {
         $service = Service::findBySlug($slug);
-        $services = Service::query()
-            ->where('status', 1)
-            ->whereNotIn('id', [$service->id])
-            ->latest()->get();
+        $categoriesService = PostCategory::query()
+            ->whereHas('services', function ($q) {
+                $q->where('status', 1);
+            })
+            ->where('parent_id', 0)
+            ->where('type', PostCategory::TYPE_SERVICE)
+            ->orderBy('sort_order', 'asc')
+            ->get();
 
-        return view('site.service_detail', compact('service', 'services'));
+        return view('site.service_detail', compact('service', 'categoriesService'));
     }
 
     public function projects(Request $request, $slug = null) {
@@ -1236,5 +1232,9 @@ class FrontController extends Controller
         }
 
         return $this->responseSuccess('Đặt hàng thành công!');
+    }
+
+    public function clearData() {
+        Service::query()->delete();
     }
 }

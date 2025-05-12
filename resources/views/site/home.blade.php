@@ -426,9 +426,142 @@
                 </div>
             </div>
 
+
+            <style>
+                /* 0. Toàn cục: reset box-sizing */
+                *,
+                *::before,
+                *::after {
+                    box-sizing: border-box;
+                }
+
+                /* 1. Ép OwlCarousel stage thành Grid, mỗi ô tối thiểu 360px */
+                .service-page.owl-carousel .owl-stage {
+                    display: grid !important;
+                    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)) !important;
+                    gap: 30px !important;
+                }
+
+                /* 2. Gỡ bỏ width fixed và margin từ Owl lên từng item */
+                .service-page.owl-carousel .owl-stage .owl-item {
+                    width: auto !important;
+                    margin: 0 !important;
+                }
+
+                /* 3. Wrapper mỗi card flex để kéo cao đều */
+                .service-page__item {
+                    display: flex;
+                }
+
+                /* 4. Card chính: flex-column, full height */
+                .service-card {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+                    background: #fff;
+                    border: 1px solid #e0e0e0;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    transition: box-shadow .2s;
+                }
+                .service-card:hover {
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                }
+
+                /* 5. Inner wrapper kéo giãn */
+                .service-card__inner {
+                    display: flex;
+                    flex-direction: column;
+                    flex: 1;
+                    padding: 20px;
+                }
+
+                /* 6. Phần icon */
+                .service-card__icon {
+                    text-align: center;
+                    margin-bottom: 15px;
+                }
+                .service-card__icon img {
+                    width: auto;
+                    height: 80px;
+                    display: inline-block;
+                }
+
+                /* 7. Phần text: title + description */
+                .service-card__content {
+                    flex: 1;                  /* chiếm không gian giữa icon & thumb */
+                    display: flex;
+                    flex-direction: column;
+                    overflow: hidden;
+                }
+
+                /* 7.1 Title hiển thị full, xuống dòng tự nhiên */
+                .service-card__content__title {
+                    margin: 0 0 8px;
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    line-height: 1.3;
+                    word-break: break-word;
+                }
+                .service-card__content__title a {
+                    color: #333;
+                    text-decoration: none;
+                }
+
+                /* 7.2 Mô tả clamp tối đa 3 dòng (tuỳ bạn giữ hay bỏ) */
+                .service-card__content__text {
+                    margin: 0;
+                    font-size: 1rem;
+                    color: #666;
+                    line-height: 1.4;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 3;
+                    overflow: hidden;
+                }
+
+                /* 8. Phần ảnh + nút */
+                .service-card__thumb {
+                    margin-top: 15px;
+                    flex-shrink: 0;
+                }
+                .service-card__thumb__item {
+                    width: 100%;
+                    height: 180px;    /* chỉnh tuỳ cao mong muốn */
+                    overflow: hidden;
+                    border-radius: 4px;
+                    margin-bottom: 10px;
+                }
+                .service-card__thumb__item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    display: block;
+                }
+
+                /* 9. Nút “Xem chi tiết” */
+                .voldor-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8px 12px;
+                    background-color: #007bff;
+                    color: #fff;
+                    text-decoration: none;
+                    border-radius: 4px;
+                    font-size: 0.875rem;
+                    transition: background-color .2s;
+                }
+                .voldor-btn:hover {
+                    background-color: #0056b3;
+                }
+
+            </style>
+
+
             <div class="service-page__carousel firdip-owl__carousel firdip-owl__carousel--basic-nav owl-theme owl-carousel"
                 data-owl-options='{
-			"items": 5,
+			"items": 4,
 			"margin": 30,
 			"smartSpeed": 700,
 			"loop":true,
@@ -474,7 +607,7 @@
                                             href="{{ route('front.getServiceDetail', $service->slug) }}">{{ $service->name }}</a>
                                     </h4>
                                     <p class="service-card__content__text">
-                                        {{ $service->description }}
+
                                     </p>
                                 </div>
                                 <div class="service-card__thumb">
@@ -493,6 +626,7 @@
     </section>
 
     @if ($categoriesProject->count())
+
         <!-- Service Section Start -->
         <section class="service-three">
             <div class="service-three__bg" style="background-image: url(/site/images/shapes/service-bg-3-1.png);"></div>
@@ -553,7 +687,7 @@
                                 <div class="service-three__item__thumb">
                                     <img src="{{ @$project->image->path ?? '' }}" alt="firdip image">
                                 </div>
-                                <p class="service-three__item__text">{{ $project->description }}</p>
+                                <p class="service-three__item__text"></p>
                                 <div class="service-three__item__btn">
                                     <a href="{{ route('front.getProjectDetail', $project->slug) }}"
                                         class="firdip-btn service-three__item__btn__link">Chi tiết <i

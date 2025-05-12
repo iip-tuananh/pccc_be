@@ -56,14 +56,14 @@
 
                             <ul class="sub-menu">
                                 @foreach($categoriesService as $cateService)
-                                    <li class="{{ $cateService->childs()->count() ? 'dropdown' : ''}}">
+                                    <li class="{{ $cateService->services()->count() ? 'dropdown' : ''}}">
                                         <a href="{{route('front.services', $cateService->slug)}}">{{ $cateService->name }}
                                         </a>
 
-                                        @if($cateService->childs()->count())
+                                        @if($cateService->services()->count())
                                             <ul class="sub-menu">
-                                                @foreach($cateService->childs as $childService)
-                                                    <li><a href="{{route('front.services', $childService->slug)}}">{{ $childService->name }}</a></li>
+                                                @foreach($cateService->services as $serv)
+                                                    <li><a href="{{route('front.getServiceDetail', $serv->slug)}}">{{ $serv->name }}</a></li>
                                                 @endforeach
                                             </ul>
                                         @endif

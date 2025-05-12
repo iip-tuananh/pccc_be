@@ -33,7 +33,6 @@ class ServiceCategoryController extends Controller
         return view($this->view.'.index', compact('categories'));
     }
 
-
     public function nestedSort(Request $request)
     {
         if ($request->ajax()) {
@@ -43,22 +42,13 @@ class ServiceCategoryController extends Controller
             $readbleArray = $this->parseJsonArray($data);
             $i=0;
             foreach($readbleArray as $row){
-                $parentID = $row['parentID'];
-
                 if($row['parentID']) {
-                    $parent = ThisModel::find($parentID);
                     $level = ThisModel::where('id', $row['parentID'])->first()->level + 1;
                 } else {
                     $level = 0;
                 }
                 $i++;
-
-                if ($level > 1) {
-                    $level  = 1;
-                   $parentID = $parent->parent_id;
-                }
-
-                DB::table('post_categories')->where('id',$row['id'])->update(['parent_id' => $parentID, 'sort_order' => $i, 'level' => $level]);
+                DB::table('post_categories')->where('id',$row['id'])->update(['sort_order' => $i]);
             }
             $json->success = true;
             $json->message = "Sắp xếp thành công";
@@ -122,7 +112,6 @@ class ServiceCategoryController extends Controller
         $validate = Validator::make(
             $request->all(),
             [
-                'parent_id' => 'nullable',
                 'name' => 'required|max:255',
                 'intro' => 'nullable',
 
@@ -207,7 +196,6 @@ class ServiceCategoryController extends Controller
         $validate = Validator::make(
             $request->all(),
             [
-                'parent_id' => 'nullable',
                 'name' => 'required|max:255',
                 'intro' => 'nullable',
 

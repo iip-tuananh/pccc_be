@@ -224,7 +224,7 @@
                                         $chunks = array_chunk($about->results, $perColumn);
                                     @endphp
 
-                                    <div class="row">
+
                                         @foreach ($chunks as $group)
                                             <div class="col-lg-12 col-md-6 col-xl-6">
                                                 <ul class="about-two__list__item list-unstyled">
@@ -236,7 +236,7 @@
                                                 </ul>
                                             </div>
                                         @endforeach
-                                    </div>
+
 
                                 </div>
                             </div>

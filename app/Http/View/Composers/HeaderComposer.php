@@ -35,8 +35,8 @@ class HeaderComposer
             ->where('type', PostCategory::TYPE_PROJECT)->orderBy('sort_order', 'asc')->get();
 
         $categoriesService = PostCategory::query()
-            ->with(['childs' => function($q) {
-                $q->orderBy('sort_order', 'asc');
+            ->with(['services' => function($q) {
+                $q->where('status', 1);
             }])
             ->where('parent_id', 0)
             ->where('type', PostCategory::TYPE_SERVICE)

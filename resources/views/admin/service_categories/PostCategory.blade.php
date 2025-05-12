@@ -26,7 +26,6 @@
             let data = {
                 name: this.name,
                 intro: this.intro,
-                parent_id: this.parent_id,
             }
             data = jsonToFormData(data);
 

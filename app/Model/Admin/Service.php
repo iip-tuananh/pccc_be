@@ -64,6 +64,11 @@ class Service extends BaseModel
         return $this->belongsTo(ServiceType::class, 'service_type_id', 'id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(PostCategory::class, 'cate_id');
+    }
+
     public function canEdit()
     {
         return Auth::user()->id = $this->create_by;
@@ -76,7 +81,7 @@ class Service extends BaseModel
 
     public static function searchByFilter($request)
     {
-        $result = self::query();
+        $result = self::query()->with(['category']);
 
         if (!empty($request->name)) {
             $result = $result->where('name', 'like', '%' . $request->name . '%');

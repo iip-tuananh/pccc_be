@@ -16,7 +16,7 @@
     <section class="page-header">
         <div class="page-header__bg" style="background-image: url(/site/images/backgrounds/page-header-bg-1-1.jpg);"></div>
         <div class="container">
-            <h2 class="page-header__title">Blog</h2>
+            <h2 class="page-header__title">Về chúng tôi</h2>
             <ul class="firdip-breadcrumb list-unstyled">
                 <li><a href="{{ route('front.home-page') }}">Trang chủ</a></li>
                 <li><span>{{ $post->name }}</span></li>

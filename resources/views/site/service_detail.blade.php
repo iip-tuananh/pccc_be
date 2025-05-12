@@ -33,8 +33,8 @@
                         <div class="service-sidebar__single  wow fadeInUp" data-wow-delay='500ms'>
                             <h3 class="service-sidebar__title">DỊCH VỤ</h3>
                             <ul class="list-unstyled service-sidebar__nav">
-                                @foreach($services as $item)
-                                    <li><a href="{{ route('front.getServiceDetail', $item->slug) }}">{{ $item->name }}<i class="icon-arrow-left"></i></a></li>
+                                @foreach($categoriesService as $item)
+                                    <li><a href="{{ route('front.services', $item->slug) }}">{{ $item->name }}<i class="icon-arrow-left"></i></a></li>
                                 @endforeach
                             </ul>
                         </div>

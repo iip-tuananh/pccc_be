@@ -83,7 +83,7 @@
             <h2 class="page-header__title">Tin tức</h2>
             <ul class="firdip-breadcrumb list-unstyled">
                 <li><a href="{{ route('front.home-page') }}">Trang chủ</a></li>
-                <li><span>{{ $category ? $category->name : 'Blog' }}</span></li>
+                <li><span>{{ $category ? $category->name : 'Tin tức' }}</span></li>
             </ul>
         </div>
     </section>
