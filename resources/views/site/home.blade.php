@@ -501,6 +501,7 @@
                     font-size: 1.25rem;
                     font-weight: 600;
                     line-height: 1.3;
+                    height: 2.6em;
                     word-break: break-word;
                 }
                 .service-card__content__title a {

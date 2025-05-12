@@ -102,7 +102,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="footer-widget footer-widget--about" style="color: #ffffff">
                         <h2 class="footer-widget__title">Về chúng tôi</h2>
-                        <p class="footer-widget__text">
+                        <p class="footer-widget__text" style="text-align: justify">
                            {!! $about->intro !!}
                         </p>
                         <form action="#" data-url="MAILCHIMP_FORM_URL" class="footer-widget__newsletter mc-form">
@@ -111,7 +111,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="col-md-6 col-lg-3">
+                <div class="col-md-6 col-lg-4">
                     <div class="footer-widget footer-widget--contact">
                         <h2 class="footer-widget__title">Liên hệ</h2>
                         <ul class="list-unstyled footer-widget__contact">
@@ -171,7 +171,7 @@
                         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
                     }
                 </style>
-                <div class="col-md-6 col-lg-5">
+                <div class="col-md-6 col-lg-4">
                     <div class="footer-widget footer-widget--map">
                         <div class="embed-responsive embed-responsive-4by3">
                             {!! $config->location !!}
