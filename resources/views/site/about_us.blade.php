@@ -322,6 +322,17 @@
 {{--    </section>--}}
 
 
+    <style>
+        .service-three__item.wow.fadeInUp {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 2. Đẩy nút “Chi tiết” xuống đáy card */
+        .service-three__item__btn {
+            margin-top: auto;
+        }
+    </style>
 
     @if ($services->count())
 
@@ -704,5 +715,15 @@
                 });
             }
         })
+    </script>
+
+    <script>
+        function eqHeights() {
+            const $cards = $('.service-three__item.wow.fadeInUp');
+            $cards.height('auto');
+            const maxH = Math.max(...$cards.map((i,el) => $(el).height()).get());
+            $cards.height(maxH);
+        }
+        $(window).on('load resize', eqHeights);
     </script>
 @endpush
