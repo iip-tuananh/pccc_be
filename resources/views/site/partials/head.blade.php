@@ -49,7 +49,7 @@
 <link rel="stylesheet" href="/site/vendors/slick-carousel/slick.css">
 <link rel="stylesheet" href="/site/vendors/slick-carousel/slick-theme.css">
 <!-- template styles -->
-<link rel="stylesheet" href="/site/css/firdip.css">
+<link rel="stylesheet" href="/site/css/firdip.css?v=14052025">
 
 <style>
     /* Style chung cho dropdown */

@@ -145,9 +145,9 @@
                         </ul>
                     </div>
                 </div>
-                {{-- <div class="col-md-6 col-lg-2">
+                 <div class="col-md-6 col-lg-2">
                     <div class="footer-widget footer-widget--link">
-                        <h2 class="footer-widget__title">Liên kết</h2>
+                        <h2 class="footer-widget__title">Thông tin</h2>
                         <ul class="list-unstyled footer-widget__links">
                             <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.abouts') }}">Về chúng tôi</a></li>
                             <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.blogs') }}">Tin tức</a></li>
@@ -156,28 +156,28 @@
                             <li class="footer-widget__links__item" style="color: #ffffff"><a href="{{ route('front.contact') }}">Liên hệ</a></li>
                         </ul>
                     </div>
-                </div> --}}
-
-                <style>
-                    .footer-widget--map {
-                    }
-                    .footer-widget--map .footer-widget__title {
-                        margin-bottom: .75rem;
-                        font-size: 1.125rem;
-                    }
-                    .footer-widget--map .embed-responsive {
-                        border-radius: 8px;
-                        overflow: hidden;
-                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-                    }
-                </style>
-                <div class="col-md-6 col-lg-4">
-                    <div class="footer-widget footer-widget--map">
-                        <div class="embed-responsive embed-responsive-4by3">
-                            {!! $config->location !!}
-                        </div>
-                    </div>
                 </div>
+
+{{--                <style>--}}
+{{--                    .footer-widget--map {--}}
+{{--                    }--}}
+{{--                    .footer-widget--map .footer-widget__title {--}}
+{{--                        margin-bottom: .75rem;--}}
+{{--                        font-size: 1.125rem;--}}
+{{--                    }--}}
+{{--                    .footer-widget--map .embed-responsive {--}}
+{{--                        border-radius: 8px;--}}
+{{--                        overflow: hidden;--}}
+{{--                        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);--}}
+{{--                    }--}}
+{{--                </style>--}}
+{{--                <div class="col-md-6 col-lg-4">--}}
+{{--                    <div class="footer-widget footer-widget--map">--}}
+{{--                        <div class="embed-responsive embed-responsive-4by3">--}}
+{{--                            {!! $config->location !!}--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
