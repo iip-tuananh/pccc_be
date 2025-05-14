@@ -723,7 +723,21 @@
             $cards.height('auto');
             const maxH = Math.max(...$cards.map((i,el) => $(el).height()).get());
             $cards.height(maxH);
+
+            console.log(maxH)
         }
         $(window).on('load resize', eqHeights);
+
+        $('.service-three__item')
+            .on('animationend', function(e){
+                if (e.originalEvent.animationName === 'fadeInUp') {
+                    eqHeights();
+                }
+            });
+
+        $('.service-three__item__thumb img').imagesLoaded( eqHeights );
+
     </script>
+
+
 @endpush

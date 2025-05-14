@@ -931,6 +931,15 @@
             $cards.height(maxH);
         }
         $(window).on('load resize', eqHeights);
+
+        $('.service-three__item')
+            .on('animationend', function(e){
+                if (e.originalEvent.animationName === 'fadeInUp') {
+                    eqHeights();
+                }
+            });
+
+        $('.service-three__item__thumb img').imagesLoaded( eqHeights );
     </script>
 
 @endpush
