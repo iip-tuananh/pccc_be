@@ -9,11 +9,11 @@
 <title>{{ $config->web_title }}</title>
 
 <!-- ========== Favicon Icon ========== -->
-<link rel="shortcut icon" href="/site/images/favicons/apple-touch-icon.png" type="image/x-icon">
-<link rel="apple-touch-icon" sizes="180x180" href="/site/images/favicons/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/site/images/favicons/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/site/images/favicons/favicon-16x16.png">
-<link rel="manifest" href="/site/images/favicons/site.webmanifest">
+<link rel="shortcut icon" href="{{@$config->favicon->path ?? ''}}" type="image/x-icon">
+<link rel="apple-touch-icon" sizes="180x180" href="{{@$config->favicon->path ?? ''}}">
+<link rel="icon" type="image/png" sizes="32x32" href="{{@$config->favicon->path ?? ''}}">
+<link rel="icon" type="image/png" sizes="16x16" href="{{@$config->favicon->path ?? ''}}">
+<link rel="manifest" href="{{@$config->favicon->path ?? ''}}">
 
 
 <!-- fonts -->
