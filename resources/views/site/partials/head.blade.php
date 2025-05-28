@@ -3,7 +3,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="bracket-web">
-<meta name="description" content="Firdip is beautifully designed Figma template especially for the fire department, fireman, fire prevention, fire fighting, fire station, protection, firefighter and all other fire & safety business and websites.">
+<meta name="description" content="{{ $config->web_title }}">
 
 <!-- ======== Page title ============ -->
 <title>{{ $config->web_title }}</title>

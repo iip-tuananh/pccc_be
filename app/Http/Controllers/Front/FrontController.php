@@ -1238,6 +1238,6 @@ class FrontController extends Controller
     }
 
     public function clearData() {
-        Service::query()->delete();
+        File::query()->where('model_type', About::class)->delete();
     }
 }

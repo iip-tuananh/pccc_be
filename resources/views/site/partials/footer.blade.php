@@ -184,7 +184,7 @@
     <div class="main-footer__bottom">
         <div class="container">
             <div class="main-footer__bottom__inner">
-                <p class="main-footer__copyright"> &copy; Copyright <span class="dynamic-year"></span> LTA Team 2025</p>
+                <p class="main-footer__copyright"> &copy; Copyright <span class="dynamic-year"></span> Việt Be</p>
             </div>
         </div>
     </div>
