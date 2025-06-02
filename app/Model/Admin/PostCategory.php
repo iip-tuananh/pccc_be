@@ -105,7 +105,7 @@ class PostCategory extends BaseModel
 
     public function services()
     {
-        return $this->hasMany(Service::class,'cate_id','id')->orderBy('created_at','desc');
+        return $this->hasMany(Service::class,'cate_id','id')->orderBy('updated_at','desc');
     }
 
     public function blogs()
@@ -138,11 +138,17 @@ class PostCategory extends BaseModel
         return Auth::user()->id == $this->created_by && $this->services()->count() == 0 && $this->getChilds()->isEmpty();
     }
 
-    public static function getForSelect($type = 1) {
+    public static function getForSelect($type = 1, $getParent = false) {
         $all = self::select(['id', 'name','sort_order','level'])
             ->orderBy('sort_order', 'asc')
-            ->where('type', $type)
-            ->get()->toArray();
+            ->where('type', $type);
+
+        if($getParent) {
+            $all = $all->where('parent_id', 0);
+        }
+
+        $all = $all->get()->toArray();
+
         $result = [];
         $result = array_map(function ($value) {
             if($value['level'] == 1) {

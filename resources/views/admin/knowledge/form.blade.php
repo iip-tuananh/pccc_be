@@ -64,7 +64,7 @@
         <div class="form-group">
             <label>Mô tả ngắn</label>
             <textarea name="form.intro"  class="form-control"
-                      ck-editor ng-model="form.intro" rows="3"></textarea>
+                      ng-model="form.intro" rows="5"></textarea>
 
         </div>
         <div class="form-group">

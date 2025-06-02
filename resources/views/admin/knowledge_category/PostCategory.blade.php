@@ -1,7 +1,7 @@
 <script>
     class PostCategory extends BaseClass {
         no_set = [];
-        all_categories = @json(\App\Model\Admin\PostCategory::getForSelect(4));
+        all_categories = @json(\App\Model\Admin\PostCategory::getForSelect(4, true));
 
         before(form) {
         }

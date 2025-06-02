@@ -115,11 +115,10 @@
                 @endphp
                 <div class="col-lg-8">
                     <div class="row gutter-y-30 gutter-x-30">
-                        @foreach($posts as $blog)
+                        @foreach ($posts as $blog)
                             @php
                                 $d = $blog->created_at;
                             @endphp
-
                             <div class="col-sm-12 col-md-6">
                                 <div class="blog-card-two wow fadeInUp h-100" data-wow-duration='1500ms' data-wow-delay='100ms'>
                                     <a href="{{ route('front.getKnowledgeDetail', $blog->slug) }}" class="blog-card-two__image">
@@ -155,6 +154,7 @@
                             {{ $posts->links('site.pagination.paginate2') }}
                         </div>
                     </div>
+
                 </div>
 
 
@@ -165,20 +165,22 @@
                             <div class="sidebar__single wow fadeInUp" data-wow-delay='300ms'>
                                 <h4 class="sidebar__title">Bài viết mới</h4>
                                 <ul class="sidebar__posts list-unstyled">
-                                    @foreach($otherBlog as $b)
-                                            <?php
-                                            $d = $b->created_at;
-                                            ?>
-                                        <li class="sidebar__posts__item">
-                                            <div class="sidebar__posts__image">
-                                                <img src="{{ @$b->image->path ?? '' }}" alt="firdip">
-                                            </div>
-                                            <div class="sidebar__posts__content">
-                                                <p class="sidebar__posts__meta"><a href="{{ route('front.getKnowledgeDetail', $b->slug) }}"   title="{{ $blog->name }}"><i class="icon-clock"></i>{{ $d->format('d') }} {{ $days[$d->dayOfWeek] }}, {{ $d->format('Y') }}</a></p>
-                                                <h4 class="sidebar__posts__title"><a href="{{ route('front.getKnowledgeDetail', $b->slug) }}">{{ $b->name }}</a></h4>
-                                            </div>
-                                        </li>
-                                    @endforeach
+                                    @if($otherBlog->count())
+                                        @foreach($otherBlog as $b)
+                                                <?php
+                                                $d = $b->created_at;
+                                                ?>
+                                            <li class="sidebar__posts__item">
+                                                <div class="sidebar__posts__image">
+                                                    <img src="{{ @$b->image->path ?? '' }}" alt="firdip">
+                                                </div>
+                                                <div class="sidebar__posts__content">
+                                                    <p class="sidebar__posts__meta"><a href="{{ route('front.getKnowledgeDetail', $b->slug) }}"   title="{{ $b->name }}"><i class="icon-clock"></i>{{ $d->format('d') }} {{ $days[$d->dayOfWeek] }}, {{ $d->format('Y') }}</a></p>
+                                                    <h4 class="sidebar__posts__title"><a href="{{ route('front.getKnowledgeDetail', $b->slug) }}">{{ $b->name }}</a></h4>
+                                                </div>
+                                            </li>
+                                        @endforeach
+                                    @endif
                                 </ul>
                             </div>
 

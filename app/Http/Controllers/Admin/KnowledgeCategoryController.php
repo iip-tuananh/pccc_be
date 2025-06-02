@@ -154,6 +154,8 @@ class KnowledgeCategoryController extends Controller
                 } else {
                     $stt = $parent->sort_order + 1;
                 }
+                $stt = $parent->sort_order + 1;
+
                 $object->parent_id = $request->parent_id;
                 $object->level = $parent->level + 1;
                 $object->sort_order = $stt;
@@ -227,21 +229,27 @@ class KnowledgeCategoryController extends Controller
             $object = ThisModel::find($id);
 
             if($request->parent_id) {
-                $parent = ThisModel::where('id',$request->parent_id)->first();
-                if($parent->level + 1 > 3) {
-                    $json->success = false;
-                    $json->message = "Menu không được quá 3 cấp cha con!";
-                    return Response::json($json);
-                }
-                $stt = ThisModel::where('parent_id', $request->parent_id)->count();
-                if($stt > 0) {
-                    $stt += $stt;
-                } else {
+                if($request->parent_id != $object->parent_id) {
+                    $parent = ThisModel::where('id',$request->parent_id)->first();
+                    if($parent->level + 1 > 3) {
+                        $json->success = false;
+                        $json->message = "Menu không được quá 3 cấp cha con!";
+                        return Response::json($json);
+                    }
+
+                    $stt = ThisModel::where('parent_id', $request->parent_id)->count();
+
                     $stt = $parent->sort_order + 1;
+                    $object->parent_id = $request->parent_id;
+                    $object->level = $parent->level + 1;
+                    $object->sort_order = $stt;
+
+                    // Cập nhật lại stt các danh mục có stt lớn hơn
+                    foreach(ThisModel::where('sort_order','>=',$stt)->where('id','<>', $object->id)->orderBy('sort_order','asc')->get() as $item) {
+                        $item->sort_order = $item->sort_order + 1;
+                        $item->save();
+                    }
                 }
-                $object->parent_id = $request->parent_id;
-                $object->level = $parent->level + 1;
-                $object->sort_order = $stt;
             } else {
                 $object->level = 0;
                 $object->sort_order = 0;
@@ -252,13 +260,6 @@ class KnowledgeCategoryController extends Controller
 
             $object->save();
 
-            // Cập nhật lại stt các danh mục có stt lớn hơn
-            if($request->parent_id) {
-                foreach(ThisModel::where('sort_order','>=',$stt)->where('id','<>', $object->id)->orderBy('sort_order','asc')->get() as $item) {
-                    $item->sort_order = $item->sort_order + 1;
-                    $item->save();
-                }
-            }
 
             DB::commit();
             $json->success = true;
